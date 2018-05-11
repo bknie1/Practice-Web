@@ -12,11 +12,14 @@ A space to take web development notes, post snippets, and link resources.
 
 ## Front End
 ### HTML
+HTML is the nouns of our page. It is our subject matter, but by itself, cannot act.
 
 #### Snippets
 [HTML5 Boilerplate](https://html5boilerplate.com/)
 
 ### CSS
+CSS is the adjectives of our page. We can use CSS to describe our HTML and make things look cool.
+
 #### Frameworks and Tools
 [Bootstrap](https://getbootstrap.com/)
 
@@ -48,11 +51,21 @@ A space to take web development notes, post snippets, and link resources.
 
 [Google Fonts](https://fonts.google.com/)
 
-
 ##### Images
 [Unsplash (Creative Commons)](https://unsplash.com/)
 
 ### JavaScript
+JavaScript is the verbs of our page. It's how we act on all of what we've constructed!
+
+#### Basics
+##### Primitive Data
+  - Numbers: Integers, floating points, fractions; anything.
+  - Strings
+  - Booleans
+  - Null and Undefined Values
+    - Null: Instantiated as nothing.
+    - Undefined: Not instantiated.
+
 #### Frameworks
 [jQuery](https://jquery.com/)
 
