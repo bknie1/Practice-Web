@@ -19,7 +19,9 @@ A space to take web development notes, post snippets, and link resources.
 ### CSS
 #### Frameworks and Tools
 [Bootstrap](https://getbootstrap.com/)
+
 [Bulma](https://bulma.io/)
+
 [Sass](https://sass-lang.com/)
 
 #### Inspiration
@@ -29,10 +31,23 @@ A space to take web development notes, post snippets, and link resources.
 ##### Layouts
 [Bootswatch](https://bootswatch.com/)
 
+##### Colors
+[Flat UI Colors](https://flatuicolors.com/)
+
+[Paletton](http://paletton.com/)
+
+##### Lorem Ipsum Placeholder Text
+[Bacon Ipsum](https://baconipsum.com/)
+
+[Hipster Ipsum](https://hipsum.co/)
+
 ##### Fonts
 [CSS Font Stack](https://www.cssfontstack.com/)
+
 [Font Awesome](https://fontawesome.com/?from=io)
+
 [Google Fonts](https://fonts.google.com/)
+
 
 ##### Images
 [Unsplash (Creative Commons)](https://unsplash.com/)
