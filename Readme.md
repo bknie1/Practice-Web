@@ -55,7 +55,7 @@ CSS is the adjectives of our page. We can use CSS to describe our HTML and make 
 [Unsplash (Creative Commons)](https://unsplash.com/)
 
 ### JavaScript
-JavaScript is the verbs of our page. It's how we act on all of what we've constructed!
+JavaScript is the verbs of our page. It's how we act on all of what we've constructed! JavaScript has implicit, immutable type data.
 
 #### Basics
 ##### Primitive Data
@@ -63,8 +63,8 @@ JavaScript is the verbs of our page. It's how we act on all of what we've constr
   - Strings
   - Booleans
   - Null and Undefined Values
-    - Null: Instantiated as nothing.
-    - Undefined: Not instantiated.
+    - Null: Declared and initialized as 'nothing'.
+    - Undefined: Declared, but not initialized.
 
 #### Frameworks
 [jQuery](https://jquery.com/)
