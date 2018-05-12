@@ -217,7 +217,7 @@ Use **.css()** to style elements. We can either style one key: value pair at a t
 ###### Selector Examples
 ```js
 // Selects all divs.
-$("'div').css("background", "purple");
+$('div').css("background", "purple");
 // Selects all divs with class highlight.
 $('div.highlight').css("width", "200px");
 // Selects div with ID third.
