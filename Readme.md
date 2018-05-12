@@ -216,6 +216,8 @@ Use **.css()** to style elements.
 
 ###### Hover/Mouse Over Event Listener Setup Examples
 ```js
+var listItems = $('li');
+
 listItems.hover(function() {
   $(this).css("color", "green");
   },
