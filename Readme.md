@@ -97,13 +97,17 @@ class Person {
 }
 ```
 ##### The Domain Object Model (DOM)
-When we use JavaScript, it interprets the entirety of our page as one big object tree. Typing 'document' yields the HTML, but typing *console.dir(document)* yields the entirety of this object tree we want to interact with.
+When we use JavaScript, it interprets the entirety of our page as one big **object tree**. Typing 'document' yields the HTML, but typing **console.dir(document)** yields the entirety of this object tree we want to interact with. We can also use console.dir() to examine selected objects further.
 
-We use selectors to discriminate between different parts of our tree.
+We use selectors to discriminate between different parts of our tree. Each object in our tree has its own properties, too. For example, elements like paragraph, or header, have text contents.
 
 ##### Vanilla Selectors
-  - getElementById, ClassName, TagName, Name
-  - QuerySelector, QuerySelectorAll
+  - getElementById: By #id
+  - getElementByClassName: By .class
+  - getElementByTagName: By <tag>
+  - getElementByName: By name attribute.
+  - QuerySelector: Returns first matching object.
+  - QuerySelectorAll: Returns all matching objects.
 
 
 #### Frameworks
