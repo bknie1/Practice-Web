@@ -87,7 +87,7 @@ JavaScript is the verbs of our page. It's how we act on all of what we've constr
   - Objects
 
 Simple, Non-Class, Dictionary-like Object Example
-```
+```js
 var person = {
   name: "Brandon",
   age: 28,
@@ -97,7 +97,8 @@ var person = {
 You can access values by name. e.g. person["name"]. Or, we can use the more typical '.' notation: person.name. However, this isn't very modular. Ideally, we create a Class Person and instantiate instances of Person using a constructor that takes the appropriate parameters.
 
 JavaScript's new ES6 (EcmaScript 6) does support classes as we know and love them in other OO languages. However, we don't define members up front; we do it all in the constructor. This means that person can be as simple or as complex as we want.
-```
+
+```js
 class Person {
   constructor(name, age, city) {
     this.name = name;
@@ -145,7 +146,7 @@ In JavaScript, functions are first class objects. When you return a function fro
 
 ###### Example
 This is the ugly, repetitive way to invoke two different class toggles on an object.
-```
+```js
 // Repetitive Color Toggle
 
 function togglePink() {
@@ -165,7 +166,7 @@ Instead, we can reduce repetition by crafting an appropriate function on the fly
 Instead, we have to delay invocation with a callback: We create a one-off function or anonymous function that uses our argument (color). Once it's constructed, it's returned, and ready to be invoked.
 
 The moral is that if you're too eager to invoke with a parameter it's going to fail. You have to write a callback.
-```
+```js
 // Condensed Color Toggle
 function toggleColor(color) {
   console.log("Toggling " + color);
@@ -181,7 +182,7 @@ We have to add event listeners to our elements in order for them to respond to k
 
   - element.addEventListener(type, function)
 
-  ```
+  ```js
   button.addEventListener("click", function() {
     console.log("Button clicked.")
   });
@@ -246,7 +247,7 @@ Currying is a functional way of bundling common operations into one action using
 
 ###### Without Currying
 
-```
+```js
 function add(num, array) {
   return array.map((item) => item+num);
 }
@@ -262,7 +263,7 @@ var multTwo = mult(2);
 
 ```
 ###### With Currying
-```
+```js
 array = [1,2,3,4,5];
 
 var addAndMultTwo = compose(addTwo, multTwo);
