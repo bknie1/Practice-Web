@@ -1,6 +1,12 @@
 var listItems = $('li');
 console.log(listItems);
 
+$('h1').css({
+  fontSize: "72px",
+  border: "3px dashed purple",
+  background: "rgba(89, 45, 20, 0.5)"
+});
+
 /* Instead of a for loop, we apply these two anon Functions
 to every item in our list. */
 listItems.hover(function() {

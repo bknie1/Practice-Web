@@ -212,9 +212,9 @@ jQuery is similar to vanilla JavaScript, but its a library that allows us to do 
 ##### $() Selector
 Use **$()** to select elements. This is similar to QuerySelectorAll in vanilla JavaScript. E.g. $('img'), $('.myClass'), $('#myID'), $("li a").
 
-Use **.css()** to style elements.
+Use **.css()** to style elements. We can either style one key: value pair at a time or by passing in a CSS formatted snippet as a single argument. Note, we can't use dashes, so where we would write *font-size* in CSS, we have to use camel case, *fontSize*, in JavaScript.
 
-###### Hover/Mouse Over Event Listener Setup Examples
+###### Hover/Mouse Over Event Listener Setup and Style Examples
 ```js
 var listItems = $('li');
 
@@ -233,6 +233,13 @@ $(listItems).mouseenter(function () {
 });
 $(listItems).mouseleave(function () {
     $(this).css("color", "#000000");
+});
+
+// We can also send one, CSS formatted arg.
+$('h1').css({
+  fontSize: "72px",
+  border: "3px dashed purple",
+  background: "rgba(89, 45, 20, 0.5)"
 });
 ```
 
