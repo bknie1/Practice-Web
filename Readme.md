@@ -5,6 +5,7 @@ A space to take web development notes, post snippets, and link resources.
  2. [HTML](#html)
  3. [CSS](#css)
  4. [JavaScript](#javascript)
+ 5. [jQuery](#jquery)
  5. [Front End Atom Packages](#front-end-atom-packages)
  6. [Back End](#back-end)
  7. [Node.js](#node.js)
