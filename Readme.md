@@ -234,35 +234,6 @@ $('#third').css("border", "4px solid orange");
 $("div:first-of-type").css("color", "pink");
 ```
 
-###### Hover/Mouse Over Event Listener Setup and Style Examples
-```js
-var listItems = $('li');
-
-listItems.hover(function() {
-  $(this).css("color", "green");
-  },
-  function() {
-    $(this).css("color", "black");
-});
-
-/* Alternatively, separate mouse enter and leave events
-accomplishes the same result. */
-
-$(listItems).mouseenter(function () {
-    $(this).css("color", "#00FF00");
-});
-$(listItems).mouseleave(function () {
-    $(this).css("color", "#000000");
-});
-
-// We can also send one, CSS formatted arg.
-$('h1').css({
-  fontSize: "72px",
-  border: "3px dashed purple",
-  background: "rgba(89, 45, 20, 0.5)"
-});
-```
-
 ##### Common Methods
 
 Given:
@@ -332,6 +303,87 @@ Given:
     $('li').addClass("alert");
     // w.fn.init(3) [li.alert, li.alert, li.alert, prevObject: w.fn.init(1)]
     ```
+
+#### Hover/Mouse Over Event Listener Setup and Style Examples
+jQuery has a variety of ways to set up event listeners. However, most of the time you will likely be using these with **on()** being the most used.
+
+  - click()
+  - keypress()
+    - Fires between down and up.
+    - Indicates which character was entered.
+      - charcode
+      - keycode
+      - which
+        - The code of they key press.
+        - jQuery docs cite 'which' a lot.
+    - We need to have an argument so we can retrieve information about our key press.
+      - Often 'event', or 'e'.
+  - keydown()
+    - Fires on key down.
+    - Returns a code for key pressed; not character.
+    - Requires event arg.
+  - keyup()
+    - Fires on key up.
+    - also returns a code for key pressed; not character.
+    - Requires event arg.
+  - on()
+    - **The most common jQuery event command.**
+    - Unlike click(), or keypress(), we can specify different kinds of input.
+      - click
+      - dblclick
+      - dragstart
+      - scroll
+      - And more!
+
+    ```js
+    // A simple click listener.
+    $('#next-button').click(function() {
+      alert("Next button clicked.");
+    });
+    ```
+
+    ```js
+    // An Enter (key code 13) key press listener.
+    $('input').keypress(function(event) {
+      if(event.which == 13) {
+        console.log('You hit enter!');
+      }
+    });
+    // Note, we pass event (e for short) so we can get data about our key press.
+
+    // On is the most versatile as there are tons of different types of first parameter input we can listen for.
+    $('#next-button').on('dblclick', function() {
+      alert("Next button was double clicked.");
+    });
+    ```
+
+```js
+var listItems = $('li');
+
+listItems.hover(function() {
+  $(this).css("color", "green");
+  },
+  function() {
+    $(this).css("color", "black");
+});
+
+/* Alternatively, separate mouse enter and leave events
+accomplishes the same result. */
+
+$(listItems).mouseenter(function () {
+    $(this).css("color", "#00FF00");
+});
+$(listItems).mouseleave(function () {
+    $(this).css("color", "#000000");
+});
+
+// We can also send one, CSS formatted arg.
+$('h1').css({
+  fontSize: "72px",
+  border: "3px dashed purple",
+  background: "rgba(89, 45, 20, 0.5)"
+});
+```
 
 #### Frameworks and Libraries
 [jQuery](https://jquery.com/)
