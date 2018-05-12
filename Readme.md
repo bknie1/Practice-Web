@@ -96,7 +96,7 @@ var person = {
 ```
 You can access values by name. e.g. person["name"]. Or, we can use the more typical '.' notation: person.name. However, this isn't very modular. Ideally, we create a Class Person and instantiate instances of Person using a constructor that takes the appropriate parameters.
 
-JavaScript's new ES6 (Ecmascript 6) does support classes as we know and love them in other OO languages. However, we don't define members up front; we do it all in the constructor. This means that person can be as simple or as complex as we want.
+JavaScript's new ES6 (EcmaScript 6) does support classes as we know and love them in other OO languages. However, we don't define members up front; we do it all in the constructor. This means that person can be as simple or as complex as we want.
 ```
 class Person {
   constructor(name, age, city) {
@@ -149,6 +149,12 @@ We have to add event listeners to our elements in order for them to respond to k
   button.addEventListener("click", function() {
     console.log("Button clicked.")
   });
+
+  document.getElementById("myBtn").addEventListener("click", myFunction);
+
+  function myFunction() {
+    document.getElementById("demo").innerHTML = "Hello World";
+  }
   ```
 Types of events may include:
   - click
