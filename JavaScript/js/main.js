@@ -4,21 +4,33 @@ console.log('fullList', fullList[0]);
 var listItems = fullList[0].children;
 console.log('listItems', listItems);
 
-fullList[0].addEventListener('mouseover', togglePink);
+// Add Listeners:
+fullList[0].addEventListener('mouseover', toggleColor('pink'));
 
 for (var i = 0; i < listItems.length; i++) {
-  listItems[i].addEventListener('click', toggleYellow);
+  listItems[i].addEventListener('click', toggleColor('yellow'));
 }
 
-// Color Toggle
+// Listener functions to assign:
+// REPETITIVE Color Toggle
 function togglePink() {
+   // event.target is more context appropriate than 'this'
   console.log('Toggling pink on ' + this);
-  this.classList.toggle('pink');
+  event.target.classList.toggle('pink');
+  // this.classList.toggle('pink');
 }
-
 function toggleYellow() {
   console.log('Toggling yellow on ' + this);
-  this.classList.toggle('yellow');
+  event.target.classList.toggle('yellow');
+}
+
+// CONDENSED Color Toggle
+function toggleColor(color) {
+  console.log("Toggling " + color);
+  // We construct and return our function. Invoking immediately doesn't work!
+  return function toggle () {
+    event.target.classList.toggle(color);
+  };
 }
 
 //------------------------------------------------------------------------------
