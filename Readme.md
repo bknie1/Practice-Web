@@ -217,6 +217,8 @@ Use **$()** to select elements. This is similar to QuerySelectorAll in vanilla J
   - $('#id')
   - $(element:first-of-type)
     - The first occurrence of an element.
+    - First of Type is a CSS selector.
+    - Alternatively, we can use 'first', but it's a little slower because it is a jQuery type; it's extra/non-native.
 
 Use **.css()** to style elements. We can either style one key: value pair at a time or by passing in a CSS formatted snippet as a single argument. Note, we can't use dashes, so where we would write *font-size* in CSS, we have to use camel case, *fontSize*, in JavaScript.
 
