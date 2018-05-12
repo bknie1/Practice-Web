@@ -11,6 +11,16 @@ A space to take web development notes, post snippets, and link resources.
  8. [Full Stack](#full-stack)
 
 ## Front End
+
+### Design
+
+#### Separation of Concerns
+  - Structure: Our HTML.
+  - Behavior: Our JavaScript.
+  - Presentation: Our CSS.
+
+There will be some overlap but we want to encapsulate and delegate as much code to where it belongs. Yes, we can modify style with JavaScript, but the bulk of our style should be determined by the CSS. In this case, it would be a good practice to define a styled CSS class and use JavaScript to toggle that style on or off.
+
 ### HTML
 HTML is the nouns of our page. It is our subject matter, but by itself, cannot act.
 
@@ -108,7 +118,6 @@ We use selectors to discriminate between different parts of our tree. Each objec
   - getElementByName: By name attribute.
   - QuerySelector: Returns first matching object.
   - QuerySelectorAll: Returns all matching objects.
-
 
 #### Frameworks
 [jQuery](https://jquery.com/)
