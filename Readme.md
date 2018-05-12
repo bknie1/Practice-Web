@@ -66,6 +66,41 @@ JavaScript is the verbs of our page. It's how we act on all of what we've constr
     - Null: Declared and initialized as 'nothing'.
     - Undefined: Declared, but not initialized.
 
+##### Built in I/O Methods
+  - Alert("Foobar"): Text pop up.
+  - Prompt: Text box pop up.
+    - e.g. var name = prompt("What is your name?")
+  - Console.Log("Foobar"): Log printing.
+
+##### Data Structures
+  - Arrays
+  - Objects
+
+Simple, Non-Class, Dictionary-like Object Example
+```
+var person = {
+  name: "Brandon",
+  age: 28,
+  city: "New Haven"
+};
+```
+You can access values by name. e.g. person["name"]. Or, we can use the more typical '.' notation: person.name. However, this isn't very modular. Ideally, we create a Class Person and instantiate instances of Person using a constructor that takes the appropriate parameters.
+
+JavaScript's new ES6 (Ecmascript 6) does support classes as we know and love them in other OO languages. However, we don't define members up front; we do it all in the constructor. This means that person can be as simple or as complex as we want.
+```
+class Person {
+  constructor(name, age, city) {
+    this.name = name;
+    this.age = age;
+    this.city = city;
+  }
+}
+```
+
+##### Vanilla Selectors
+  - getElementById, ClassName, TagName, Name
+  - QuerySelector, QuerySelectorAll
+
 #### Frameworks
 [jQuery](https://jquery.com/)
 
@@ -82,6 +117,9 @@ JavaScript is the verbs of our page. It's how we act on all of what we've constr
 #### Front Specific
  - Emmet
  - CSS Comb
+ - ternjs (Autocomplete)
+ - jshint (Linter)
+ - csshint (Linter)
  - Color Picker
  - Pigments
  - Open In Browser
@@ -95,3 +133,7 @@ JavaScript is the verbs of our page. It's how we act on all of what we've constr
 ## Full Stack
 #### Courses
 [Colt Steele's Web Developer Boot Camp](https://www.udemy.com/the-web-developer-bootcamp/)
+
+#### Atom
+##### Keybinds
+  -Ctrl+D: Cursor to all by name.
