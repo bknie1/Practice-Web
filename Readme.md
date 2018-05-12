@@ -96,10 +96,15 @@ class Person {
   }
 }
 ```
+##### The Domain Object Model (DOM)
+When we use JavaScript, it interprets the entirety of our page as one big object tree. Typing 'document' yields the HTML, but typing *console.dir(document)* yields the entirety of this object tree we want to interact with.
+
+We use selectors to discriminate between different parts of our tree.
 
 ##### Vanilla Selectors
   - getElementById, ClassName, TagName, Name
   - QuerySelector, QuerySelectorAll
+
 
 #### Frameworks
 [jQuery](https://jquery.com/)
@@ -110,14 +115,14 @@ class Person {
  - Beautify
  - File Icons
  - Highlight Selected
- - Linters and Snippets
+ - Linter and Snippets
  - Teletype
  - Minimap
 
 #### Front Specific
  - Emmet
  - CSS Comb
- - ternjs (Autocomplete)
+  ternjs (Autocomplete)
  - jshint (Linter)
  - csshint (Linter)
  - Color Picker
