@@ -140,6 +140,41 @@ Key: value pairs in our elements or tags.
   - element.getAttribute("href"): Returns the stored website URL.
   - element.setAttribute("href", "www.duckduckgo.com"): Replaces the attribute's value with DuckDuckGo.
 
+##### Callback Functions
+In JavaScript, functions are first class objects. When you return a function from another function, we delay invocation. JavaScript is writing itself on the fly so if you invoke too early it won't know what to do.
+
+###### Example
+####### Repetitive Color Toggle
+This is the ugly, repetitive way to invoke two different class toggles on an object.
+```
+function togglePink() {
+   // event.target is more context appropriate than 'this'
+  console.log('Toggling pink on ' + this);
+  event.target.classList.toggle('pink');
+  // this.classList.toggle('pink');
+}
+
+function toggleYellow() {
+  console.log('Toggling yellow on ' + this);
+  event.target.classList.toggle('yellow');
+}
+```
+####### Condensed Color Toggle
+Instead, we can reduce repetition by crafting an appropriate function on the fly. In other programming languages I would simply pass color and invoke the toggle command. But, because JavaScript is eager, it tries to run it immediately without considering my specific argument.
+
+Instead, we have to delay invocation with a callback: We create a one-off function or anonymous function that uses our argument (color). Once it's constructed, it's returned, and ready to be invoked.
+
+The moral is that if you're too eager to invoke with a parameter it's going to fail. You have to write a callback.
+```
+function toggleColor(color) {
+  console.log("Toggling " + color);
+  // We construct and return our function. Invoking immediately doesn't work!
+  return function toggle () {
+    event.target.classList.toggle(color);
+  };
+}
+```
+
 ##### Event Listeners
 We have to add event listeners to our elements in order for them to respond to key clicks, mouse clicks, mouse overs, etc. If our even listeners 'hear' something they will trigger a defined function.
 
@@ -201,6 +236,37 @@ useCapture is an optional boolean parameter and can be set to true. By default, 
 ## Full Stack
 #### Courses
 [Colt Steele's Web Developer Boot Camp](https://www.udemy.com/the-web-developer-bootcamp/)
+
+#### Concepts
+Non-specific concepts that were helpful didn't really fit anywhere else.
+
+##### Currying
+Currying is a functional way of bundling common operations into one action using composition. Instead of invoking add and multiply individually, we can instead compose them together into one function that does both on an object and returns the final value.
+
+###### Without Currying
+
+```
+function add(num, array) {
+  return array.map((item) => item+num);
+}
+
+function mult(num, array) {
+  return array.map((item) => item*num);
+}
+
+array = [1,2,3,4,5];
+
+var addTwo = add(2);
+var multTwo = mult(2);
+
+```
+###### With Currying
+```
+array = [1,2,3,4,5];
+
+var addAndMultTwo = compose(addTwo, multTwo);
+var endArray  = addAndMultTwo(array);
+```
 
 #### Atom
 ##### Keybinds
