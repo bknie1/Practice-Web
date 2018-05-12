@@ -212,6 +212,12 @@ jQuery is similar to vanilla JavaScript, but its a library that allows us to do 
 ##### $() Selector
 Use **$()** to select elements. This is similar to QuerySelectorAll in vanilla JavaScript. E.g. $('img'), $('.myClass'), $('#myID'), $("li a").
 
+  - $('element')
+  - $('element.class')
+  - $('#id')
+  - $(element:first-of-type)
+    - The first occurrence of an element.
+
 Use **.css()** to style elements. We can either style one key: value pair at a time or by passing in a CSS formatted snippet as a single argument. Note, we can't use dashes, so where we would write *font-size* in CSS, we have to use camel case, *fontSize*, in JavaScript.
 
 ###### Selector Examples
