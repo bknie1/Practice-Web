@@ -206,8 +206,40 @@ There are two ways events propagate in our DOM. In **Bubbling**, the inner eleme
 
 useCapture is an optional boolean parameter and can be set to true. By default, our events bubble unless we specify otherwise.
 
-#### Frameworks
+#### jQuery
+jQuery is similar to vanilla JavaScript, but its a library that allows us to do everything a little faster with less code. It is very selector heavy, but doesn't feature the component templates of newer libraries. Still, the selector syntax ($) is easy to pickup and makes some JavaScript commands less verbose.
+
+##### $() Selector
+Use **$()** to select elements. This is similar to QuerySelectorAll in vanilla JavaScript. E.g. $('img'), $('.myClass'), $('#myID'), $("li a").
+
+Use **.css()** to style elements.
+
+###### Hover/Mouse Over Event Listener Setup Examples
+```js
+listItems.hover(function() {
+  $(this).css("color", "green");
+  },
+  function() {
+    $(this).css("color", "black");
+});
+
+/* Alternatively, separate mouse enter and leave events
+accomplishes the same result. */
+
+$(listItems).mouseenter(function () {
+    $(this).css("color", "#00FF00");
+});
+$(listItems).mouseleave(function () {
+    $(this).css("color", "#000000");
+});
+```
+
+#### Frameworks and Libraries
 [jQuery](https://jquery.com/)
+
+[React](https://reactjs.org/)
+
+[Vue.js](https://vuejs.org/)
 
 ### Front End Atom Packages
 
