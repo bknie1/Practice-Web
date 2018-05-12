@@ -111,6 +111,8 @@ When we use JavaScript, it interprets the entirety of our page as one big **obje
 
 We use selectors to discriminate between different parts of our tree. Each object in our tree has its own properties, too. For example, elements like paragraph, or header, have text contents.
 
+#### Commands
+
 ##### Vanilla Selectors
   - getElementById: By #id
   - getElementByClassName: By .class
@@ -125,6 +127,14 @@ As I mentioned previously, we can define a style using CSS and add or remove tha
   - object.classList.add("className")
   - object.classList.remove("className")
   - object.classList.toggle("className"): If added, remove, if removed, add it back.
+
+##### Text Content
+  - object.textContent: Returns the stored text data.
+  - object.textContent = "fubar": Assigns new text data.
+
+##### Manipulating Attributes
+  - object.getAttribute("href"): Might yield www.google.com
+  - object.setAttribute("href", "www.duckduckgo.com"): Replaces the attribute's value.
 
 #### Frameworks
 [jQuery](https://jquery.com/)
