@@ -335,27 +335,29 @@ jQuery has a variety of ways to set up event listeners. However, most of the tim
       - scroll
       - And more!
 
-    ```js
-    // A simple click listener.
-    $('#next-button').click(function() {
-      alert("Next button clicked.");
-    });
-    ```
+```js
+// A simple click listener.
+$('#next-button').click(function() {
+  alert("Next button clicked.");
+});
+```
 
-    ```js
-    // An Enter (key code 13) key press listener.
-    $('input').keypress(function(event) {
-      if(event.which == 13) {
-        console.log('You hit enter!');
-      }
-    });
-    // Note, we pass event (e for short) so we can get data about our key press.
+```js
+// An Enter (key code 13) key press listener.
+$('input').keypress(function(event) {
+  if(event.which == 13) {
+    console.log('You hit enter!');
+  }
+});
+// Note, we pass event (e for short) so we can get data about our key press.
+```
 
-    // On is the most versatile as there are tons of different types of first parameter input we can listen for.
-    $('#next-button').on('dblclick', function() {
-      alert("Next button was double clicked.");
-    });
-    ```
+```js
+// On is the most versatile as there are tons of different types of first parameter input we can listen for.
+$('#next-button').on('dblclick', function() {
+  alert("Next button was double clicked.");
+});
+```
 
 ```js
 var listItems = $('li');
