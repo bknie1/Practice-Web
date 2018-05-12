@@ -214,6 +214,18 @@ Use **$()** to select elements. This is similar to QuerySelectorAll in vanilla J
 
 Use **.css()** to style elements. We can either style one key: value pair at a time or by passing in a CSS formatted snippet as a single argument. Note, we can't use dashes, so where we would write *font-size* in CSS, we have to use camel case, *fontSize*, in JavaScript.
 
+###### Selector Examples
+```js
+// Selects all divs.
+$("'div').css("background", "purple");
+// Selects all divs with class highlight.
+$('div.highlight').css("width", "200px");
+// Selects div with ID third.
+$('#third').css("border", "4px solid orange");
+// Selects the first div only.
+$("div:first-of-type").css("color", "pink");
+```
+
 ###### Hover/Mouse Over Event Listener Setup and Style Examples
 ```js
 var listItems = $('li');
