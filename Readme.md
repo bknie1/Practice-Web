@@ -144,9 +144,10 @@ Key: value pairs in our elements or tags.
 In JavaScript, functions are first class objects. When you return a function from another function, we delay invocation. JavaScript is writing itself on the fly so if you invoke too early it won't know what to do.
 
 ###### Example
-####### Repetitive Color Toggle
 This is the ugly, repetitive way to invoke two different class toggles on an object.
 ```
+// Repetitive Color Toggle
+
 function togglePink() {
    // event.target is more context appropriate than 'this'
   console.log('Toggling pink on ' + this);
@@ -159,13 +160,13 @@ function toggleYellow() {
   event.target.classList.toggle('yellow');
 }
 ```
-####### Condensed Color Toggle
 Instead, we can reduce repetition by crafting an appropriate function on the fly. In other programming languages I would simply pass color and invoke the toggle command. But, because JavaScript is eager, it tries to run it immediately without considering my specific argument.
 
 Instead, we have to delay invocation with a callback: We create a one-off function or anonymous function that uses our argument (color). Once it's constructed, it's returned, and ready to be invoked.
 
 The moral is that if you're too eager to invoke with a parameter it's going to fail. You have to write a callback.
 ```
+// Condensed Color Toggle
 function toggleColor(color) {
   console.log("Toggling " + color);
   // We construct and return our function. Invoking immediately doesn't work!
