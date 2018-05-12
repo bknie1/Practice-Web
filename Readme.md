@@ -400,6 +400,15 @@ jQuery has a ton of different effects. You can apply effects to selected element
   <div class="square">This will get faded, too.</div>
   <div class="square">You guessed it.</div>
   ```
+  
+  ```css
+  .square {
+    background-color: teal;
+    float: left;
+    height: 100px;
+    width: 100px;
+  }
+  ```
 
   ```js
   $('.square').on('click', function(event) {
