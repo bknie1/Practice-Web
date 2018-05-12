@@ -114,27 +114,54 @@ We use selectors to discriminate between different parts of our tree. Each objec
 #### Commands
 
 ##### Vanilla Selectors
-  - getElementById: By #id
-  - getElementByClassName: By .class
-  - getElementByTagName: By <tag>
-  - getElementByName: By name attribute.
-  - QuerySelector: Returns first matching object.
-  - QuerySelectorAll: Returns all matching objects.
+  - document.getElementById: By #id
+  - document.getElementByClassName: By .class
+  - document.getElementByTagName: By <tag>
+  - document.getElementByName: By name attribute.
+  - document.QuerySelector: Returns first matching object.
+  - document.QuerySelectorAll: Returns all matching objects.
 
 ##### Actionable Design
-As I mentioned previously, we can define a style using CSS and add or remove that style using actions in JavaScript.
+We can define a style using CSS and add or remove that style using actions in JavaScript. It's best to compartmentalize the bulk of styling within the CSS. Instead, we can use classes to toggle styles.
 
-  - object.classList.add("className")
-  - object.classList.remove("className")
-  - object.classList.toggle("className"): If added, remove, if removed, add it back.
+  - element.classList.add("className")
+  - element.classList.remove("className")
+  - element.classList.toggle("className"): If added, remove, if removed, add it back.
 
 ##### Text Content
-  - object.textContent: Returns the stored text data.
-  - object.textContent = "fubar": Assigns new text data.
+How we edit the text attribute in our elements or tags.
+
+  - element.textContent: Returns the stored text data.
+  - element.textContent = "fubar": Assigns new text data.
 
 ##### Manipulating Attributes
-  - object.getAttribute("href"): Might yield www.google.com
-  - object.setAttribute("href", "www.duckduckgo.com"): Replaces the attribute's value.
+Key: value pairs in our elements or tags.
+
+  - element.getAttribute("href"): Returns the stored website URL.
+  - element.setAttribute("href", "www.duckduckgo.com"): Replaces the attribute's value with DuckDuckGo.
+
+##### Event Listeners
+We have to add event listeners to our elements in order for them to respond to key clicks, mouse clicks, mouse overs, etc. If our even listeners 'hear' something they will trigger a defined function.
+
+  - element.addEventListener(type, function)
+
+  ```
+  button.addEventListener("click", function() {
+    console.log("Button clicked.")
+  });
+  ```
+Types of events may include:
+  - click
+  - mouseover
+  - mouseout
+  - resize for window resizing.
+
+###### Bubbling and Capturing Events
+There are two ways events propagate in our DOM. In **Bubbling**, the inner element's event is handled before each outer element. In **Capturing**, or alternatively, **Tunneling**, is when we handle the outer most element's event before any inner events.
+
+- addEventListener(event, function, useCapture)
+
+useCapture is an optional boolean parameter and can be set to true. By default, our events bubble unless we specify otherwise.
 
 #### Frameworks
 [jQuery](https://jquery.com/)
