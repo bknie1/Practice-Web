@@ -263,6 +263,76 @@ $('h1').css({
 });
 ```
 
+##### Common Methods
+
+Given:
+```html
+<h1>Let's Learn jQuery</h1>
+<input type="text" placeholder="Your Name">
+
+<ul>
+  <li>Skittles</li>
+  <li>Starburst</li>
+  <li>Twix</li>
+</ul>
+```
+
+  - val()
+    - Retrieves the current value.
+    - Sets the current value if given a second arg.
+    ```js
+    $('input').val()
+    // "123"
+
+    $('input').val('456')
+    // "456"
+    ```
+
+  - text()
+    ```js
+    $('h1').text()
+    // "Let's Learn jQuery"
+
+    $('h1').text("New text!")
+    // Replaces with "New text!"
+    ```
+
+  - attr()
+    - Gets the value of an attribute of the first matched element.
+    ```js
+    ('input').attr('placeholder')
+    // "Your Name"
+
+    ('input').attr('placeholder', "Not Your Name")
+    // "Not Your Name", replaced!
+    ```
+
+  - html()
+    - Gets the HTML content of the first matched element.
+    - Sets the HTML of all elements captured.
+    ```js
+    $('li').html()
+    // "Skittles"
+
+    $('li').html("<li>I hacked your list.</li>")
+    // I hacked your list. (Replaces all li contents.)
+    ```
+
+  - addClass()
+  - removeClass()
+  - toggleClass()
+
+    ```js
+    $('li').toggleClass("alert");
+    // w.fn.init(3) [li, li, li, prevObject: w.fn.init(1)]
+    $('li').toggleClass("alert");
+    // w.fn.init(3) [li.alert, li.alert, li.alert, prevObject: w.fn.init(1)]
+    $('li').removeClass("alert");
+    // w.fn.init(3) [li, li, li, prevObject: w.fn.init(1)]
+    $('li').addClass("alert");
+    // w.fn.init(3) [li.alert, li.alert, li.alert, prevObject: w.fn.init(1)]
+    ```
+
 #### Frameworks and Libraries
 [jQuery](https://jquery.com/)
 

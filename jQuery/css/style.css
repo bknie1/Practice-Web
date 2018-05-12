@@ -1,3 +1,7 @@
+.alert {
+  background: red;
+}
+
 .selected {
   color: green;
 }
