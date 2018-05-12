@@ -119,6 +119,13 @@ We use selectors to discriminate between different parts of our tree. Each objec
   - QuerySelector: Returns first matching object.
   - QuerySelectorAll: Returns all matching objects.
 
+##### Actionable Design
+As I mentioned previously, we can define a style using CSS and add or remove that style using actions in JavaScript.
+
+  - object.classList.add("className")
+  - object.classList.remove("className")
+  - object.classList.toggle("className"): If added, remove, if removed, add it back.
+
 #### Frameworks
 [jQuery](https://jquery.com/)
 
