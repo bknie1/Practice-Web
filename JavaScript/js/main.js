@@ -32,7 +32,12 @@ function toggleColor(color) {
     event.target.classList.toggle(color);
   };
 }
-
+//------------------------------------------------------------------------------
+// Button Example
+var btn = document.querySelector('button');
+btn.addEventListener('click', function (e) {
+  document.querySelector('h1').textContent = "Button clicked.";
+});
 //------------------------------------------------------------------------------
 daysAlive();
 
