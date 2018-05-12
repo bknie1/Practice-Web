@@ -388,6 +388,27 @@ $('h1').css({
 });
 ```
 
+#### jQuery Effects
+jQuery has a ton of different effects. You can apply effects to selected elements:
+
+  - .fadeOut(duration, endFunction)
+    - function on complete is optional.
+
+  Example:
+  ```html
+  <div class="square">This will get faded.</div>
+  <div class="square">This will get faded, too.</div>
+  <div class="square">You guessed it.</div>
+  ```
+
+  ```js
+  $('.square').on('click', function(event) {
+    $(this).fadeOut('slow', function() {
+      console.log('Faded square.');
+    });
+  });
+  ```
+
 #### Frameworks and Libraries
 [jQuery](https://jquery.com/)
 

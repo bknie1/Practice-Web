@@ -27,3 +27,9 @@ $(listItems).mouseleave(function () {
 });
 
 */
+
+$('.square').on('click', function(event) {
+  $(this).fadeOut('slow', function() {
+    console.log('Faded square.');
+  });
+});
