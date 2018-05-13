@@ -450,6 +450,59 @@ jQuery has a ton of different effects. You can apply effects to selected element
  - Open In Browser
 
 ## Back End
+### Internet Basics
+#### Steps
+  1. When we enter a URL, we find the right site address. (Readable URL to IP Address)
+  2. Next, we request the fastest path possible from your computer to that address.
+  3. The site server responds, builds us the appropriate content (using information from the back end).
+  4. The browser renders the page from HTML, CSS, and JavaScript.
+
+### Static vs. Dynamic Sites
+#### Static
+Everything basic websites are; there isn't any information on the back end. **Everything is constructed at load time** from the same HTML, CSS, and JavaScript. Things don't really change around.
+
+#### Dynamic
+Sites that are compiled on the server side. **The server constructs the page before its sent back as a response.** For example, when we refresh reddit, we get different content every time, because its being constructed from scratch for us every time.
+
+### Stacks and Back End Technologies
+
+#### Generic Stack Components
+  - Back End: Language/App, Server, Database
+    - Ruby, Python, Scala, Java, JavaScript, PHP, C#
+    - Postgres, SQLite, MySQL, MongoDB
+  - Front End: HTML, CSS, JS
+
+We can use [stackshare.io](http://www.stackshare.io) to see what different companies use.
+
+#### My Stack
+  - Back: Node.js, Express, MongoDB
+  - Front: HTML, CSS, JS/jQuery
+
+##### reddit Stack Example
+  - Back: Python/Flask, nginx, Postgres
+  - Front: HTML, CSS, JS
+
+##### Airbnb Stack Example
+  - Back: Ruby/Ruby on Rails, nginx, mySQL
+  - Front: HTML, CSS/Sass, JS/React
+
+#### Potential Back End Features
+  - User Account Management
+  - Constructing Views for the User
+  - Adding/removing posts to a database.
+  - Adding new comments.
+  - Sort/Rank Posts
+  - Create a subreddit.
+  - Add to newsletter.
+
+#### Interaction Flow Example
+  1. Front: Ask for reddit homepage.
+  2. Back: Get top posts from DB and send back homepage content.
+  3. Front: Browser renders page.
+  4. Front: User searches for 'cats'.
+  5. Back: Finds all posts about cats.
+  6. Back: Sends the HTML for the results page.
+  7. Front: Browser renders page.
 
 ### Node.js
 
