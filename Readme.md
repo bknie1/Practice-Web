@@ -336,6 +336,10 @@ jQuery has a variety of ways to set up event listeners. However, most of the tim
       - scroll
       - And more!
 
+**Note about click() vs. on()**: Using a second argument, on() can be used to fire on current and all future children. This means we only have to assign an event listener using on() once if we know the target element and its parent. However, if we create new elements, and we used click(function(e) ), we have to call click(function(e) ) again to add that assignment manually.
+
+Therefore, it is **usually preferable** to use **on()** instead of **click()**.
+
 ```js
 // A simple click listener.
 $('#next-button').click(function() {
@@ -400,7 +404,7 @@ jQuery has a ton of different effects. You can apply effects to selected element
   <div class="square">This will get faded, too.</div>
   <div class="square">You guessed it.</div>
   ```
-  
+
   ```css
   .square {
     background-color: teal;
