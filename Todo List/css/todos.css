@@ -1,16 +1,91 @@
 body {
   background: linear-gradient(to right, teal , lightyellow);
-}
-
-.todo-list-container {
-  align-content: center;
-  background: rgb(240, 240, 227);
-  border: 1px solid #000;
-  margin: 0 auto;
-  width: 25em;
+  font-family: 'Roboto', sans-serif;
 }
 
 .completed-task {
   color: grey;
   text-decoration: line-through;
+}
+
+.fa-plus {
+  margin-top: .25em;
+  float: right;
+}
+
+h1 {
+  background: #2980B9;
+  color: white;
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 0;
+  padding: .25em 1em;
+  text-transform: uppercase;
+}
+
+li {
+  background: white;
+  color: #666;
+  font-weight: bold;
+  height: 2em;
+  line-height: 2em;
+}
+
+li:hover span {
+  opacity: 1.0;
+  padding: 0 0 0 0;
+  width: 2em;
+}
+
+/* Every other li gets colored. */
+li:nth-child(2n) {
+  background: rgb(240, 240, 227);
+}
+
+span {
+  background: #E74C3C;
+  color: white;
+  display: inline-block;
+  height: 2em;
+  opacity: 0;
+  padding: 0 0 0 1em;
+  text-align: center;
+  transition: 0.2s linear;
+  width: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.todo-input {
+  background-color: rgb(240, 240, 227);
+  border: 3px solid rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  color: #2980B9;
+  font-size: 18px;
+  padding: .5em .5em .5em 1em;
+  transition: 0.2s linear;
+  width: 100%;
+}
+
+.todo-input:focus {
+  background: white;
+  border: 3px solid #2980B9;
+  outline: none;
+}
+
+.toggle-input-off {
+  opacity: 0;
+  padding: 0 0 0 0;
+}
+
+.todo-list-container {
+  align-content: center;
+  background: rgb(240, 240, 227);
+  box-shadow: 0 0 3px rgba(0, 0, 0, .25);
+  margin: 5em auto;
+  width: 25em;
 }
