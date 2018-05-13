@@ -1,0 +1,16 @@
+body {
+  background: linear-gradient(to right, teal , lightyellow);
+}
+
+.todo-list-container {
+  align-content: center;
+  background: rgb(240, 240, 227);
+  border: 1px solid #000;
+  margin: 0 auto;
+  width: 25em;
+}
+
+.completed-task {
+  color: grey;
+  text-decoration: line-through;
+}
