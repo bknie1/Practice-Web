@@ -690,7 +690,12 @@ To include and use the package in our project.
 
 ##### Useful Package List
 - Angular.js
+  - A popular front end framework.
 - Express
+  - Introduces .NET-like razor Views.
+- faker
+  - Lower case 'f'.
+  - Helps generate fake data to test your site with.
 
 ##### Currying
 Currying is a functional way of bundling common operations into one action using composition. Instead of invoking add and multiply individually, we can instead compose them together into one function that does both on an object and returns the final value.
