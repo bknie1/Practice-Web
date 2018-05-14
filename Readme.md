@@ -606,13 +606,65 @@ app.get("/", function(req, res) {
 When the user sends a GET request with a 'root' (/) route (e.g. google.com/, or localhost:3000/), we render a page called 'home' in the response. 'home' is a **View** we constructed.
 
 get() takes two parameters:
-  - The URL/Path
+  - The URL/Path, **Route**
   - A callback function with the request and response.
-    - Request contains all the information about the request that was made.
-    - Response contains the information we're going to respond with.
+    - **Request** contains all the information about the request that was made.
+    - **Response** contains the information we're going to respond with.
 
-##### Respond
-Respond has a variety of different response methods.
+##### Routes
+The route is the URL path the user requested. Depending on the URL, we route the user to different kinds of information.
+
+###### * : Splat/Star Route Matcher and Default Route
+```js
+app.get('*', (req, res) => {
+  res.send("Error: 404 Page not Found");
+});
+```
+Serves as a catch-all, **default route**. This way, if we receive a request we aren't familiar with or ready to handle, we can default to this Splat/Star route. For example, a formatted 404 page.
+
+Must be placed last in our route list because we iterate top down. Because its a catch all/wildcard, if this default route is first, it will always be valid, and we won't reach the other potential routes. **The default route should always be the last route in our list of routes**.
+
+###### Route Parameters
+We can pass custom arguments to a route to reduce route repetition and instead use logic to serve the user.
+
+####### reddit Example
+Reddit has thousands of popular subreddits; topic forums the user can visit. There are not routes for each subreddit. Instead, the route takes an argument, the user's preferred subreddit, and generates a View of information from that particular subreddit.
+
+If a **route** requires a **parameter**, that information will be transmitted in the **request**. Request owns a dictionary, **params**, that contains passed **key: value pairs**. For example, if I have a route:
+
+```
+/r/:subreddit
+```
+And if I pass *r/soccer/*, My request contains a member, params, that contains
+```
+params: { subreddit: 'soccer' }
+```
+I pass my request into my inner function and I can freely access this data to construct an appropriate View.
+
+```js
+// Bad Example without Parameters; only specific routes.
+app.get('/r/soccer', (req, res) => {
+ // ...
+});
+app.get('/r/games/comments/3puds5/hello/', (req, res) => {
+ // ...
+});
+
+// Good Example with Parameters
+  // Tells express to read in subreddit as a variable.
+app.get('/search/:subreddit', (req, res) => {
+  console.log("User requested a subreddit.");
+  console.log(req); // Contains params: { subreddit: 'soccer' }
+
+   // Accesses the value of our subreddit key from the request parameters.
+  res.send("You want go to " + req.params.subreddit);
+  // Yields 'You want to go to soccer'
+});
+
+```
+
+##### Response
+Response has a variety of different response methods.
   - render
     - Renders a View.
   - send
@@ -715,20 +767,27 @@ packageName().DoSomething();
 ```
 To include and use the package in our project.
 
+###### package.json
+Lists the dependencies for a package so we can also go retrieve those dependencies for the package we want to use. e.g. Instead of just sending the recipe, we send the recipe and a list of ingredients needed to make the meal!
+
+####### npm init
+We can use npm init to initialize a new package.json for our project. After, whenever we use the --save flag:
+```
+npm install <package name> --save
+```
+npm will add this package, and its dependencies, to our package.json file. This way, if we transport our web app without its packages, we can quickly gather those dependencies again.
+
 ###### Install Flags
 ```
-npm install --save
+npm install <package name> --save
 ```
-**Save Flag**:
-
-
+**Save Flag**: Not only installs a package, but saves the package as a dependency to our package.json list of dependencies.
 - --save
 - -s
 ```
-npm install -g
+npm install <package name> -g
 ```
 **Global Flag**: Installs the package to our global node package folder so that it can be accessed by all node.js web applications running on a server. This means we don't have to install packages for each individual web app every time.
-
   - --global
   - -g
 
