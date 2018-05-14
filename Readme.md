@@ -430,16 +430,6 @@ jQuery has a ton of different effects. You can apply effects to selected element
 [Vue.js](https://vuejs.org/)
 
 ### Front End Atom Packages
-
-#### General
- - Beautify
- - File Icons
- - Highlight Selected
- - Linter and Snippets
- - Teletype
- - Minimap
-
-#### Front Specific
  - Emmet
  - CSS Comb
   ternjs (Autocomplete)
@@ -576,7 +566,38 @@ app.js dictates our serving behavior. When we run app.js our server will start. 
         - Most important! Its required to receive outside requests!
       - e.g. reddit.com/search, 'search' takes us down a route that accepts a string, that we assign to 'q', as a search argument.
 
-#### Simple Node.js GET Example
+#### app.js Setup
+First, we need to require() express. Then, we need to declare a port to be used. Finally, we have to listen for requests to our app on that port. Without a listener, our web app won't do anything!
+
+**Note:** Get requests will be explained below.
+
+##### Full Example
+```js
+//- REQUIRES -------------------------------------------------------------------
+const express = require('express');
+var app = express();
+//- SETUP ----------------------------------------------------------------------
+var port = 3000;
+app.listen(port, function () {
+  console.log(`Server Starts on ${port}`);
+});
+//- DATABASE -------------------------------------------------------------------
+// Nothing yet!
+//- ROUTES ---------------------------------------------------------------------
+// "/"
+app.get('/', (req, res) => {
+  console.log("Someone has requested '/'");
+  res.send("Hello!");
+});
+
+// "/bye"
+app.get('/goodbye', (req, res) => {
+  console.log("Someone has requested 'goodbye'.");
+  res.send('Goodbye!');
+});
+```
+
+#### Simple Node.js and Express.js GET Example
 ```js
 app.get("/", function(req, res) {
   res.render("home")
@@ -584,7 +605,20 @@ app.get("/", function(req, res) {
 ```
 When the user sends a GET request with a 'root' (/) route (e.g. google.com/, or localhost:3000/), we render a page called 'home' in the response. 'home' is a **View** we constructed.
 
-#### Dynamic Node.js GET Example
+get() takes two parameters:
+  - The URL/Path
+  - A callback function with the request and response.
+    - Request contains all the information about the request that was made.
+    - Response contains the information we're going to respond with.
+
+##### Respond
+Respond has a variety of different response methods.
+  - render
+    - Renders a View.
+  - send
+    - Sends a message.
+
+#### Dynamic Node.js and Express.js GET Example
 ```js
 app.get("/dogs", function(req, res) {
   // Get all dogs from the database.
@@ -600,7 +634,7 @@ In the View, we use ExpressJS (<% ... %>) embedded code. For each dog, we create
 
 Finally, we respond with that constructed, multi-dog View. The user sees a list of dogs.
 
-#### Simple Node.js POST Example
+#### Simple Node.js and Express.js POST Example
 ```js
 app.post("/createDog", function(req, res) {
   // Uses user args to create a dog, adds it to db.
@@ -621,7 +655,7 @@ Once the dog has been added, the user is forward to our dogs page, which is resp
 
 **Warning:** Right now, we don't have anything in between to validate this data, so empty 'dogs' are possible. We need some sanitization and validation layer in a real world example.
 
-#### Form Node.js POST Example
+#### Form Node.js and Express.js POST Example
 ```html
 <form action="/createDog" method="POST">
   <input type="text" placeholder="Name" name="name">
@@ -681,6 +715,23 @@ packageName().DoSomething();
 ```
 To include and use the package in our project.
 
+###### Install Flags
+```
+npm install --save
+```
+**Save Flag**:
+
+
+- --save
+- -s
+```
+npm install -g
+```
+**Global Flag**: Installs the package to our global node package folder so that it can be accessed by all node.js web applications running on a server. This means we don't have to install packages for each individual web app every time.
+
+  - --global
+  - -g
+
 ##### Useful Package List
 - Angular.js
   - A popular front end framework.
@@ -735,6 +786,47 @@ Lightweight Frameworks, in contrast, have many blanks, and we have to do a lot o
 #### Express.js
 Express is a **lightweight framework**.
 
+#### JSON: JavaScript Object Notation
+Transmits data objects in a human readable key: value format and array data types. We can bundle information into a JSON and respond to requests with it.
+
+##### Example
+```json
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "isAlive": true,
+  "age": 27,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10021-3100"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "office",
+      "number": "646 555-4567"
+    },
+    {
+      "type": "mobile",
+      "number": "123 456-7890"
+    }
+  ],
+  "children": [],
+  "spouse": null
+}
+```
+
+#### XML: Extensible Markup Language
+Similar to a JSON, but constructed in a tag tree format. XML is also commonly used to structure apps.
+
+#### Atom Back End Packages
+ - expressjs
+
 ## Full Stack
 #### Courses
 [Colt Steele's Web Developer Boot Camp](https://www.udemy.com/the-web-developer-bootcamp/)
@@ -771,5 +863,13 @@ var endArray  = addAndMultTwo(array);
 ```
 
 #### Atom
+##### General Packages
+ - Beautify
+ - File Icons
+ - Highlight Selected
+ - Linter and Snippets
+ - Teletype
+ - Minimap
+
 ##### Keybinds
   -Ctrl+D: Cursor to all by name.
