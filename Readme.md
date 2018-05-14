@@ -504,7 +504,148 @@ We can use [stackshare.io](http://www.stackshare.io) to see what different compa
   6. Back: Sends the HTML for the results page.
   7. Front: Browser renders page.
 
+### HTTP
+The Hyper Text Transfer Protocol dictates the request/response cycle. We navigate the internet by making requests and getting responses with the data we're interested in.
+
+A free tool, [Postman](https://www.getpostman.com/), let's us trace this cycle. It's primarily for developers but can help us understand how the cycle works.
+
+We can simply visit Google.com and that's technically a request. But we can make requests from other browsers, apps, the CLI, the back end, a mobile app, scripts, and more.
+
+#### HTTP Verbs
+These are some of the types of requests we can make. Just because these requests are made doesn't necessarily mean they happen; they are merely protocol messages with intentions.
+
+  - GET
+    - Retrieving information. Asking for data to come back.
+      - e.g. Making a GET request on Google.com, without parameters, will merely return the HTML, CSS, and JS required to construct the page.
+    - You can send some data with a GET request using forms.
+      - e.g. reddit.com/search?q=corgis
+  - POST
+    - Sending information.
+    - You can't make these from a search bar.
+    - You can make them using HTML forms.
+  - PUT
+    - To update or edit things; like a Facebook post.
+  - PATCH
+    - To update or edit things.
+  - DELETE
+    - Deletes something.
+  - And other, less common ones.
+
+##### GET Example
+
+```
+reddit.com/search?q=corgis
+```
+**var q = 'corgis'**
+
+The reddit server is looking for the data stored in the q variable send with the request. We can keep adding arguments:
+
+```
+reddit.com/search?q=corgis?city=newhaven
+```
+**var city = 'newhaven'**
+
+But reddit isn't looking for a variable named city so nothing will happen.
+
+##### Headers
+Headers are included with every request. Important ones include:
+  - Content-Type
+    - What are you sending? Usually text/html but you can do others.
+  - Date/Time
+  - Status
+    - The status code.
+      - e.g. 200, good request.
+      - e.g. 404, not found.
+
 ### Node.js
+Our back end server framework. app.js dictates our serving behavior.
+
+#### app.js
+When we run app.js our server will start. The server will listen for incoming requests.
+  - Setup
+    - Sets up logging and parsing of data.
+  - Database
+    - Sets up our database with different model schema.
+  - Routes
+    - Handles the different arguments we attach to our domain.
+      - app.get(route, function)
+        - Handles incoming get requests.
+      - app.post(route, function)
+        - Handles incoming post requests.
+      - app.listen(port, function)
+        - Most important! Its required to receive outside requests!
+      - e.g. reddit.com/search, 'search' takes us down a route that accepts a string, that we assign to 'q', as a search argument.
+
+#### Simple Node.js GET Example
+```js
+app.get("/", function(req, res) {
+  res.render("home")
+});
+```
+When the user sends a GET request with a 'root' (/) route (e.g. google.com/, or localhost:3000/), we render a page called 'home' in the response. 'home' is a **View** we constructed.
+
+#### Dynamic Node.js GET Example
+```js
+app.get("/dogs", function(req, res) {
+  // Get all dogs from the database.
+  Dog.find({}, function(err, dogs) {
+    // Render dogs.
+    res.render("dogs", {dogs: dogs});
+  });
+});
+```
+The user routes to /dogs. We request a list of dogs from the database and pass that ViewModel information to our View.
+
+In the View, we use ExpressJS (<% ... %>) embedded code. For each dog, we create a list item with that dog's information.
+
+Finally, we respond with that constructed, multi-dog View. The user sees a list of dogs.
+
+#### Simple Node.js POST Example
+```js
+app.post("/createDog", function(req, res) {
+  // Uses user args to create a dog, adds it to db.
+  Dog.create({
+    name: req.body.name,
+    breed: req.body.breed
+  }, function(err, dog) {
+    // Then, we redirect the user to dogs.
+    res.redirect("/dogs");
+  });
+});
+```
+The user passes name and breed arguments to create a dog. A dog is created and added to our database of dogs using this data.
+
+Once the dog has been added, the user is forward to our dogs page, which is responsible for creating a list of every dog in the database, anyway. The user should be able to see the newly added dog.
+
+**Note:** We have to use a tool like Postman to respond to this POST request because, in this example, there isn't any HTML responsible for the POST.
+
+**Warning:** Right now, we don't have anything in between to validate this data, so empty 'dogs' are possible. We need some sanitization and validation layer in a real world example.
+
+#### Form Node.js POST Example
+```html
+<form action="/createDog" method="POST">
+  <input type="text" placeholder="Name" name="name">
+  <input type="text" placeholder="Breed" name="breed">
+  <input type="submit">
+</form>
+```
+
+When the user submits this form, it will send a POST request to /createDog where name and breed are the contents of the input.
+
+```js
+app.post("/createDog", function(req, res) {
+  // Uses user args to create a dog, adds it to db.
+  Dog.create({
+    name: req.body.name,
+    breed: req.body.breed
+  }, function(err, dog) {
+    // Then, we redirect the user to dogs.
+    res.redirect("/dogs");
+  });
+});
+```
+
+In the first example, we could manually send this request with a tool like Postman. Now, on any page where this POST form exists, we can create dog entries.
 
 ### ASP MVC
 
