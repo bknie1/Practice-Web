@@ -558,10 +558,10 @@ Headers are included with every request. Important ones include:
       - e.g. 404, not found.
 
 ### Node.js
-Our back end server framework. app.js dictates our serving behavior.
+Up until recently JavaScript was a browser only language. It's a way for us to write JavaScript on the server side.
 
 #### app.js
-When we run app.js our server will start. The server will listen for incoming requests.
+app.js dictates our serving behavior. When we run app.js our server will start. The server will listen for incoming requests.
   - Setup
     - Sets up logging and parsing of data.
   - Database
@@ -647,7 +647,8 @@ app.post("/createDog", function(req, res) {
 
 In the first example, we could manually send this request with a tool like Postman. Now, on any page where this POST form exists, we can create dog entries.
 
-### ASP MVC
+#### Node Console
+We rarely have to, but we can run 'Node' from the CLI to access
 
 ## Full Stack
 #### Courses
@@ -655,6 +656,41 @@ In the first example, we could manually send this request with a tool like Postm
 
 #### Concepts
 Non-specific concepts that were helpful didn't really fit anywhere else.
+
+##### REPL
+```
+node repl
+```
+It's a place we can write JavaScript in our CLI. Ruby, and other server side languages, can also do something like this.
+
+##### Running a File with Node
+```
+node <filename>
+```
+Will attempt to execute the file as JavaScript. We can use this to run app.js and launch our server. Again, Most server side languages also work this way.
+
+#### npm: Node Package Manager
+npm manages all the packages we want to associate with node.js. Angular.js is a very popular JavaScript framework; it has a package that can be installed with npm. Express, a way to generate HTML Views using JavaScript, is another package.
+
+Packages are basically libraries, its just that these packages are specific to npm.
+
+We use packages, tools, and frameworks to expedite our production.
+
+##### Installing and Using Packages
+```
+npm install <package>
+```
+Installs a package.
+
+```js
+var packageName = require('packageName');
+packageName().DoSomething();
+```
+To include and use the package in our project.
+
+##### Useful Package List
+- Angular.js
+- Express
 
 ##### Currying
 Currying is a functional way of bundling common operations into one action using composition. Instead of invoking add and multiply individually, we can instead compose them together into one function that does both on an object and returns the final value.
