@@ -650,13 +650,6 @@ In the first example, we could manually send this request with a tool like Postm
 #### Node Console
 We rarely have to, but we can run 'Node' from the CLI to access
 
-## Full Stack
-#### Courses
-[Colt Steele's Web Developer Boot Camp](https://www.udemy.com/the-web-developer-bootcamp/)
-
-#### Concepts
-Non-specific concepts that were helpful didn't really fit anywhere else.
-
 ##### REPL
 ```
 node repl
@@ -692,10 +685,62 @@ To include and use the package in our project.
 - Angular.js
   - A popular front end framework.
 - Express
+  - A popular back end framework.
   - Introduces .NET-like razor Views.
 - faker
   - Lower case 'f'.
   - Helps generate fake data to test your site with.
+
+### Server Side Frameworks
+#### Framework vs. Library
+
+Libraries are collections of tools we can use in our projects however we please. **You are in control.**
+
+Frameworks aren't just a collection of tools we can use; they provide a skeletal structure of where and how to use things, as well. We should work within the 'frame' of the tool set. **The framework is in control.**
+
+#### Heavyweight vs. Lightweight Frameworks
+Imagine a mad-libs page where we can fill in blanks to create a narrative. Heavyweight and Lightweight frameworks are similar:
+
+##### Heavyweight
+Heavyweight Frameworks have very few blanks. They do most of the work for us and we only have to configure them slightly.
+
+##### Lightweight
+Lightweight Frameworks, in contrast, have many blanks, and we have to do a lot of the work to configure them for our own means.
+
+##### Popular Web Frameworks
+  - Express.js
+    - Back End Framework
+    - Lightweight
+    - JavaScript
+  - Flask
+    - Back End Framework
+    - Python
+  - Django
+    - Back End Framework
+    - Python
+  - Rails
+    - Back End Framework
+    - Heavyweight
+    - Ruby
+  - Sinatra
+    - Back End Framework
+    - Ruby
+  - Sails.js
+    - Another node web development back end framework.
+    - JavaScript
+  - Angular.js
+    - Front End Framework
+    - JavaScript
+
+#### Express.js
+Express is a **lightweight framework**.
+
+## Full Stack
+#### Courses
+[Colt Steele's Web Developer Boot Camp](https://www.udemy.com/the-web-developer-bootcamp/)
+
+#### Concepts
+Non-specific concepts that were helpful didn't really fit anywhere else.
 
 ##### Currying
 Currying is a functional way of bundling common operations into one action using composition. Instead of invoking add and multiply individually, we can instead compose them together into one function that does both on an object and returns the final value.
