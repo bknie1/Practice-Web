@@ -622,7 +622,9 @@ app.get('*', (req, res) => {
 ```
 Serves as a catch-all, **default route**. This way, if we receive a request we aren't familiar with or ready to handle, we can default to this Splat/Star route. For example, a formatted 404 page.
 
-Must be placed last in our route list because we iterate top down. Because its a catch all/wildcard, if this default route is first, it will always be valid, and we won't reach the other potential routes. **The default route should always be the last route in our list of routes**.
+Must be placed last in our route list because we iterate top down. Because its a catch all/wildcard, if this default route is first, it will always be valid, and we won't reach the other potential routes.
+
+**Route order matters! The default route should always be the last route in our list of routes**.
 
 ###### Route Parameters
 We can pass custom arguments to a route to reduce route repetition and instead use logic to serve the user.
@@ -773,19 +775,19 @@ Lists the dependencies for a package so we can also go retrieve those dependenci
 ####### npm init
 We can use npm init to initialize a new package.json for our project. After, whenever we use the --save flag:
 ```
-npm install <package name> --save
+npm install --save <package name>
 ```
 npm will add this package, and its dependencies, to our package.json file. This way, if we transport our web app without its packages, we can quickly gather those dependencies again.
 
 ###### Install Flags
 ```
-npm install <package name> --save
+npm install --save <package name>
 ```
 **Save Flag**: Not only installs a package, but saves the package as a dependency to our package.json list of dependencies.
 - --save
 - -s
 ```
-npm install <package name> -g
+npm install -g <package name>
 ```
 **Global Flag**: Installs the package to our global node package folder so that it can be accessed by all node.js web applications running on a server. This means we don't have to install packages for each individual web app every time.
   - --global
