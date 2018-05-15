@@ -1,0 +1,10 @@
+<h1>The Latest Headlines</h1>
+<ul>
+<% if(viewHeadlines.length > 1) { %>
+  <% viewHeadlines.forEach(function(elem) { %>
+    <li><a href="<%= elem.link %>"><%= elem.headline %></a>
+  <% }); %>
+<% } else { %>
+    <li><a href="<%= viewHeadlines.link %>"><%= viewHeadlines.headline %></a>
+<% } %>
+</ul>
