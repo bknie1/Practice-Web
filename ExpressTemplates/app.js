@@ -2,7 +2,11 @@
 const express = require('express');
 var app = express();
 //- SETUP ----------------------------------------------------------------------
-app.set('view engine', 'ejs'); // We use embedded js files.
+ // We indicate the use of embedded js files.
+app.set('view engine', 'ejs');
+// We ask Express to serve static files in /public: Styles, Scripts.
+app.use(express.static(__dirname + '/public'));
+// Also, we need to include our partial views.
 
 var port = 3000;
 app.listen(port, function () {
