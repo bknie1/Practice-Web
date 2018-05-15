@@ -926,19 +926,15 @@ Express is a **lightweight framework**.
 ##### REST: Representational State Transfer
 Based on HTTP, REST architecture, and RESTful web services, create opportunities for interaction between computers and the internet. They perform stateless operations.
 
-From Wikipedia:
-```
-"REST-compliant web services allow the requesting systems to access and manipulate textual representations of web resources by using a uniform and predefined set of stateless operations."
-```
+*From Wikipedia:*
+> REST-compliant web services allow the requesting systems to access and manipulate textual representations of web resources by using a uniform and predefined set of stateless operations.
 
 ##### RESTful APIs
 
 RESTful APIs, the most common type of API, listens for state requests about a particular item or account, and returns that information for processing.
 
-From Wikipedia:
-```
-"In a RESTful web service, requests made to a resource's URI will elicit a response that may be in HTML, XML, JSON, or some other format. The response may confirm that some alteration has been made to the stored resource, and the response may provide hypertext links to other related resources or collections of resources. When HTTP is used, as is most common, the operations available are GET, POST, PUT, DELETE, and other predefined CRUD HTTP methods."
-```
+*From Wikipedia:*
+> In a RESTful web service, requests made to a resource's URI will elicit a response that may be in HTML, XML, JSON, or some other format. The response may confirm that some alteration has been made to the stored resource, and the response may provide hypertext links to other related resources or collections of resources. When HTTP is used, as is most common, the operations available are GET, POST, PUT, DELETE, and other predefined CRUD HTTP methods."
 
 #### JSON: JavaScript Object Notation
 Transmits data objects in a human readable key: value format and array data types. We can bundle information into a JSON and respond to requests with it.
