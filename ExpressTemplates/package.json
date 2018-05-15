@@ -1,0 +1,19 @@
+{
+  "name": "expressintroduction",
+  "version": "1.0.0",
+  "description": "Packages for my intro to Express web app.",
+  "main": "app.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BMK",
+  "license": "ISC"
+}
