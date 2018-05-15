@@ -692,16 +692,32 @@ In the View, we use ExpressJS (<% ... %>) embedded code. For each dog, we create
 Finally, we respond with that constructed, multi-dog View. The user sees a list of dogs.
 
 #### Simple Node.js and Express.js POST Example
+**Note:** First, There is a node package called bodyparser that we can use to translate *req.body* into a JavaScript object. It used to be bundled with Express but no longer is as of May 2018.
+
 ```js
-app.post("/createDog", function(req, res) {
-  // Uses user args to create a dog, adds it to db.
-  Dog.create({
-    name: req.body.name,
-    breed: req.body.breed
-  }, function(err, dog) {
-    // Then, we redirect the user to dogs.
-    res.redirect("/dogs");
-  });
+// Parses GET input form data into a usable JavaScript object.
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: true}));
+```
+
+Then, we can begin parsing input form data. The user submits a friend's name:
+```html
+<form class="input" action="/addfriend" method="post">
+  <input type="text" name="name" placeholder="Name">
+  <button type="submit">Add Friend</button>
+</form>
+```
+
+```js
+app.post('/addfriend', (req, res) => {
+  console.log("Someone requested 'addfriend'.");
+  var newFriend = req.body.name;
+  console.log(newFriend); //{ 'Han' }
+  if(newFriend) {
+    console.log("Adding new friend: " + newFriend);
+    friends.push(newFriend);
+  } else console.log("Error: Name not found.");
+  res.redirect('/friends');
 });
 ```
 The user passes name and breed arguments to create a dog. A dog is created and added to our database of dogs using this data.
@@ -1011,7 +1027,10 @@ Transmits data objects in a human readable key: value format and array data type
 Similar to a JSON, but constructed in a tag tree format. XML is also commonly used to structure apps.
 
 #### Atom Back End Packages
- - expressjs
+ - express
+ - bodyparser
+   - For GET requests.
+   - Turns req.body into a usable JavaScript object.
 
 ## Full Stack
 #### Courses
