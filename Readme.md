@@ -793,12 +793,80 @@ npm install -g <package name>
   - --global
   - -g
 
+### Express and EJS Templates
+When we write Express, we don't write plain HTML files. Instead, we write embedded JavaScript files with a **template**.
+
+**Note:** ejs is a separate node package. Make sure it has been added to your project!
+
+Instead of sending a response, we **render** these **Views** to the user. Here, we render a homepage that's .ejs formatted:
+```js
+app.get('/', (req, res) => {
+  console.log("Someone has requested '/'");
+  res.render('home.ejs');
+});
+```
+**Note:** *home.ejs*, and all other embedded JavaScript files, must be located in a folder called Views.
+
+#### Passing a View Model to an EJS Template
+```js
+app.get('/fallinlovewith/:item', (req, res) => {
+  console.log("Someone has requested '/fallinlovewith/:item'");
+  var item = req.params.item;
+
+  // We have to pass our item to the template.
+  // We pass an View model (object) that assigns this item to a View model member.
+  res.render('fallinlovewith', {viewItem: item});
+});
+```
+The user is able to route to '/fallinlovewith/<item of their choice>'. We are able to access that item using the **parameter member** of the **request object**. the item is assigned locally.
+
+Then, we render the 'fallinlovewith.ejs' View with a View Model object. Here, this *item* is assigned to an object member named *viewItem* and passed alongside the View. It is formatted as such:
+
+```js
+res.render(<View>, <View Model>);
+```
+
+#### Wrapping Tags
+
+##### Opening Tags
+**<%**: 'Scriptlet' tag, for control-flow, no output. The result isn't added to the HTML in any way.
+
+**<%=**: Outputs the value into the template (HTML escaped). The result is added to the HTML.
+
+**<%_**: ‘Whitespace Slurping’ Scriptlet tag, strips all whitespace before it.
+
+**<%-**: Outputs the unescaped value into the template.
+
+**<%#**: Comment tag, there is no execution or output. Purely for documentation purposes.
+
+**<%%**: Outputs a literal '<%'. This isn't EJS, just a way to escape out and use these characters in this order.
+
+##### Closing Tags
+
+**%>**: Plain ending tag.
+
+**-%>**: Trim-mode ('newline slurp') tag, trims following newline.
+
+**\_%>**: ‘Whitespace Slurping’ ending tag, removes all whitespace after it.
+
+```html
+<h2>You fell in love with <%= viewItem.toUpperCase(); %></h2>
+
+<% if(viewItem == 'charlie'){ %>
+  <h3>Good choice!</h3>
+<% } %>
+```
+
 ##### Useful Package List
-- Angular.js
-  - A popular front end framework.
 - Express
   - A popular back end framework.
   - Introduces .NET-like razor Views.
+- ejs
+  - Embedded JavaScript
+  - Required for Express
+  - Allows us to create template Views.
+- Angular.js
+  - A popular front end framework.
 - faker
   - Lower case 'f'.
   - Helps generate fake data to test your site with.
