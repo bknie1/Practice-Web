@@ -796,16 +796,46 @@ npm install -g <package name>
   - --global
   - -g
 
+##### Useful Package List
+- Express
+  - A popular back end framework.
+  - Introduces .NET-like razor Views.
+- ejs
+  - Embedded JavaScript
+  - Required for Express
+  - Allows us to create template Views.
+- Angular.js
+  - A popular front end framework.
+- faker
+  - Lower case 'f'.
+  - Helps generate fake data to test your site with.
+
 ### Express and EJS Templating
 When we write Express, we don't write plain HTML files. Instead, we write embedded JavaScript files with a **template**.
 
-**Note:** ejs is a separate node package. Make sure it has been added to your project!
+**Note:** ejs is a separate node package. Make sure it has been added to your project! Also, we can include a snippet that indicates we will be using .ejs in this project. This way, we don't actually have to specify the .ejs extension in our renders.
+```js
+app.set('view engine', 'ejs');
+```
+Instead of sending a response, we **render** these **Views** to the user.
 
-Instead of sending a response, we **render** these **Views** to the user. Here, we render a homepage that's .ejs formatted:
+**View:** Here, an HTML file with embedded JavaScript. In .NET, an HTML file with embedded C# (razor). We construct Views with data to present to the user. We **render** *views* in our *app.js* or other server side script.
+```
+res.render('home');
+```
+*Note:* Views must be placed in the '/views' folder.
+
+**Partial View:** Like a View, but a smaller component we can use to create larger Views. This is handy for repeated code like HTML5 boilerplate. We **include** *partials* in our *view*.
+```
+<% include partials/header %>
+```
+*Note:* Partial views must be placed in the '/views/partial' folder.
+
+Here, we render a homepage that's .ejs formatted:
 ```js
 app.get('/', (req, res) => {
   console.log("Someone has requested '/'");
-  res.render('home.ejs');
+  res.render('home'); // or home.ejs if we don't set a view engine.
 });
 ```
 **Note:** *home.ejs*, and all other embedded JavaScript files, must be located in a folder called Views.
@@ -860,19 +890,25 @@ res.render(<View>, <View Model>);
 <% } %>
 ```
 
-##### Useful Package List
-- Express
-  - A popular back end framework.
-  - Introduces .NET-like razor Views.
-- ejs
-  - Embedded JavaScript
-  - Required for Express
-  - Allows us to create template Views.
-- Angular.js
-  - A popular front end framework.
-- faker
-  - Lower case 'f'.
-  - Helps generate fake data to test your site with.
+#### Serving Custom Assets
+In Express, if we want to add custom CSS and JavaScript, we have to create a folder called **public** in our project root; alongside app.js:
+```
+app.js
+/public
+  - /css
+    - style.css
+  - /js
+    - script.js
+```
+By default, Express only looks for items in the **view** folder. We have to tell app.js that assets in **public** need to be served.
+
+This is where Express will for asset resources. When I **link** a **style** or **script**, the root of this search is this public folder.
+```html
+<link rel="stylesheet" href="/css/style.css" />
+```
+This will link to *public/css/style.css*.
+
+**Note**: You must include the preceding '/' before css for your style to load properly on all pages. Else, /posts seemed to load the style, but /posts/ yielded a *not found* error.
 
 ### Server Side Frameworks
 #### Framework vs. Library
