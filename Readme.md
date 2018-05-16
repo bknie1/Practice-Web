@@ -995,6 +995,72 @@ app.post('/campgrounds', (req, res) => {});
 ```
 Where we get data from a user submitted form.
 
+###### Full Route Example
+```js
+// ROUTES
+// GET REQUESTS -----------------------
+// '/' Root
+app.get('/', (req, res) => {
+  console.log("Someone requested 'root'.");
+  res.render('index');
+});
+//-------------------------------------
+// '/campgrounds'
+app.get('/campgrounds', (req, res) => {
+  console.log("Someone requested 'campgrounds'.");
+  res.render('campgrounds', {viewCampgrounds: campgrounds});
+});
+//-------------------------------------
+// '/campgrounds/new'
+app.get('/campgrounds/new', (req, res) => {
+  console.log("Someone requested 'new' (campground).");
+  res.render('new');
+});
+//-------------------------------------
+// POST REQUESTS ----------------------
+app.post('/campgrounds', (req, res) => {
+  // Get campground data from a form.
+  newName = req.body.name;
+  newImage = req.body.image;
+
+  console.log("Someone wants to add " + newName, newImage);
+  if(newName != undefined || newImage != undefined) {
+    campgrounds.push(
+      {
+        name: newName,
+        image: newImage
+      }
+    );
+    res.redirect('/campgrounds'); // Defaults to a GET, so it's okay.
+  }
+  else {
+    console.log("Error: Could not add campground.");
+  }
+  // Add a campground to our array.
+});
+//-------------------------------------
+```
+
+And the add form:
+```html
+<main>
+  <h3>Add Form</h3>
+  <div class="padding-1">
+    <form class="" action="/campgrounds" method="post">
+      <div class="form-group">
+        <label for="name-input">Campground Name:</label>
+        <input id="name-input" type="text" name="name" placeholder="Enter Name">
+      </div>
+      <div class="form-group">
+        <label for="img-input">Campground Image:</label>
+        <input id="img-input" type="text" name="image" placeholder="URL">
+      </div>
+      <button type="submit" name="button">Submit</button>
+    </form>
+  </div>
+</main>
+```
+
 ##### RESTful APIs
 
 RESTful APIs, the most common type of API, listens for state requests about a particular item or account, and returns that information for processing.
