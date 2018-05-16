@@ -68,7 +68,7 @@ app.post('/campgrounds', (req, res) => {
         image: newImage
       }
     );
-    res.redirect('/campgrounds');
+    res.redirect('/campgrounds'); // Defaults to a GET, so it's okay.
   }
   else {
     console.log("Error: Could not add campground.");
