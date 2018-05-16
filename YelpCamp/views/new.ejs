@@ -1,0 +1,37 @@
+<% include partials/header %>
+
+<div class="container">
+  <header>
+    <h1>YelpCamp</h1>
+    <h2>Add New Campground</h2>
+  </header>
+  <nav>
+    <h3>Navigation</h3>
+    <a href="/">Home</a>
+    <br>
+    <a href="/campgrounds">Campgrounds</a>
+    <br>
+    <a href="/campgrounds/new">Add Campground</a>
+  </nav>
+  <main>
+    <h3>Add Form</h3>
+    <div class="padding-1">
+      <form class="" action="/campgrounds" method="post">
+        <div class="form-group">
+          <label for="name-input">Campground Name:</label>
+          <input id="name-input" type="text" name="name" placeholder="Enter Name">
+        </div>
+        <div class="form-group">
+          <label for="img-input">Campground Image:</label>
+          <input id="img-input" type="text" name="image" placeholder="URL">
+        </div>
+        <button type="submit" name="button">Submit</button>
+      </form>
+    </div>
+  </main>
+  <aside>
+    Aside
+  </aside>
+</div>
+
+<% include partials/footer %>

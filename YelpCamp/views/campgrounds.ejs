@@ -3,7 +3,7 @@
 <div class="container">
   <header>
     <h1>YelpCamp</h1>
-    <h2>Home</h2>
+    <h2>Campgrounds</h2>
   </header>
   <nav>
     <h3>Navigation</h3>
@@ -14,10 +14,19 @@
     <a href="/campgrounds/new">Add Campground</a>
   </nav>
   <main>
-    Welcome to YelpCamp! Feel free to have a look around.
+    <h3>Locations</h3>
+    <ul>
+      <% viewCampgrounds.forEach(function(campground) { %>
+        <h4>
+        <%= campground.name; %>
+        </h4>
+        <img src="<%= campground.image%>" alt="Picture">
+      <% }); %>
+    </ul>
   </main>
-  <aside>Aside</aside>
-  <footer>Footer</footer>
+  <aside>
+    Aside
+  </aside>
 </div>
 
 <% include partials/footer %>
