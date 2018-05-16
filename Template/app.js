@@ -5,6 +5,9 @@ var app = express(); // Typical local assignment.
 // Parses GET input form data into a usable JavaScript object.
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
+
+// We can use this to make API requests.
+const request = require('request');
 // SETUP -----------------------------------------------------------------------
 // DEPENDENCIES
 app.set('view engine', 'ejs'); // 'as' snippet.
