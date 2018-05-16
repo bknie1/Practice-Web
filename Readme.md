@@ -991,6 +991,8 @@ RESTful APIs, the most common type of API, listens for state requests about a pa
 #### JSON: JavaScript Object Notation
 Transmits data objects in a human readable key: value format and array data types. We can bundle information into a JSON and respond to requests with it.
 
+**Note:** Look familiar? It's in the name; they are formatted like simple JavaScript objects!
+
 ##### Example
 ```json
 {
@@ -1024,7 +1026,7 @@ Transmits data objects in a human readable key: value format and array data type
 ```
 
 #### XML: Extensible Markup Language
-Similar to a JSON, but constructed in a tag tree format. XML is also commonly used to structure apps.
+They can serve information like a JSON but also have a lot in common with HTML. But, unlike HTML, XML only gives is the data; not what it looks like. XML is also commonly used to structure apps.
 
 #### Atom Back End Packages
  - express
