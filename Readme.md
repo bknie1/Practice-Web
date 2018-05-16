@@ -1028,6 +1028,29 @@ Transmits data objects in a human readable key: value format and array data type
 #### XML: Extensible Markup Language
 They can serve information like a JSON but also have a lot in common with HTML. But, unlike HTML, XML only gives is the data; not what it looks like. XML is also commonly used to structure apps.
 
+#### Making API Calls in Node.js with Express
+
+First, we install 'request', a popular request package. After we require it, we use it to call on an API URI. We also have a callback with error, response, and body arguments.
+
+We print an error, if there was one, the status code of our request, and the raw data returned.
+
+Finally, we use JavaScript's built-in JSON.parse() method to translate the raw data into a usable JavaScript object.
+
+From there we can treat it like any other object!
+```js
+// API DEMO
+// https://developer.yahoo.com/weather/
+const request = require('request');
+console.log("Sunset time for Hawaii:");
+request('https://query.yahooapis.com/v1/public/yql?q=select%20astronomy.sunset%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22maui%2C%20hi%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys', function (error, res, body) {
+  console.log('error:', error); // Print the error if one occurred
+  console.log('statusCode:', res && res.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the raw JSON.
+  var parsedBody = JSON.parse(body);
+  console.log('Parsed body:\n', parsedBody);
+});
+```
+
 #### Atom Back End Packages
  - express
  - bodyparser
