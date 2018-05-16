@@ -971,7 +971,7 @@ Lightweight Frameworks, in contrast, have many blanks, and we have to do a lot o
 Express is a **lightweight framework**.
 
 ### APIs and Packaging Data
-**Application program interfaces**, both internal and external, allow us to ask for and receive information.
+An **Application programming interface**, both internal and external, allows us to ask for and receive information. They usually transmit data over **HTTP**.
 
 #### REST and RESTful APIs
 
