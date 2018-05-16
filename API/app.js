@@ -5,6 +5,14 @@ var app = express(); // Typical local assignment.
 // Parses GET input form data into a usable JavaScript object.
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
+
+// We can use this to make API requests.
+const request = require('request');
+/*
+OMDB API Key: thewdb
+General search: http://www.omdbapi.com/?s=guardians+of+the+galaxy&apikey=thewdb
+Search with Movie ID: http://www.omdbapi.com/?i=tt3896198&apikey=thewdb
+*/
 // SETUP -----------------------------------------------------------------------
 // DEPENDENCIES
 app.set('view engine', 'ejs'); // 'as' snippet.
@@ -16,28 +24,44 @@ app.listen(port, function () {
   console.log(`Server Starts on ${port}`);
 });
 
-// API DEMO
-// https://developer.yahoo.com/weather/
-const request = require('request');
-console.log("Sunset time for Hawaii:");
-request('https://query.yahooapis.com/v1/public/yql?q=select%20astronomy.sunset%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22maui%2C%20hi%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys', function (error, res, body) {
-  console.log('error:', error); // Print the error if one occurred
-  console.log('statusCode:', res && res.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the raw JSON.
-  var parsedBody = JSON.parse(body);
-  console.log('Parsed body:\n', parsedBody);
-});
 // DATABASE --------------------------------------------------------------------
 
 
 // ROUTES ----------------------------------------------------------------------
 // GET REQUESTS -----------------------
-// '/' Root
+// '/' Root: Search for movies.
 app.get('/', (req, res) => {
-  console.log("Someone requested 'root'.");
-  res.render('index');
+  console.log("Someone requested 'search (the root)'.");
+  res.render('search');
 });
 //-------------------------------------
+// '/results'
+app.get('/results', (req, res) => {
+  //Get the search query from the root View.
+  var search = req.query.search;
+  if(search == 'undefined') search = '';
+  console.log("Someone requested '/results' and searched for " + search);
+  // Note: Use 'response', not 'res', or we accidentally overload.
+  request('http://www.omdbapi.com/?s=' + search + '&apikey=thewdb', function(error, response, body) {
+    if(!error && response.statusCode == 200) {
+      var parsedBody = JSON.parse(body);
+      // res.send(parsedBody); // Full JSON
+      // res.send(parsedBody.Search[0]); // First result only.
+      // res.send(parsedBody.Search[0].Title) // Title only.
+      res.render('results', {viewResults: parsedBody});
+    }
+    else {
+      console.log(error);
+    }
+  })
+});
+
+//-------------------------------------
+// '/id'
+
+//-------------------------------------
+// '/title'
+
 // POST REQUESTS ----------------------
 
 //-------------------------------------

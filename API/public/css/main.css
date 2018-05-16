@@ -97,21 +97,22 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+table {
+  border: 1px solid black;
+  height: 50%;
+  padding: 2em;
+  width: 50%;
+}
 
+ td {
+  text-align:center;
+  vertical-align:middle;
+ }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+th img {
+  height: 25%;
+  width: 25%;
+}
 
 /* ==========================================================================
    Helper classes

@@ -1,0 +1,25 @@
+<% include partials/header %>
+
+<h1>Results</h1>
+<ul>
+  <% viewResults.Search.forEach(function(movie) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <img src="<%= movie.Poster %>"></a>
+            </th>
+            <th><%= movie.Title %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Year</td>
+            <td><%= movie.Year %></td>
+          </tr>
+        </tbody>
+      </table>
+  <% }); %>
+</ul>
+
+<% include partials/footer %>
