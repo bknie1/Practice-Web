@@ -981,6 +981,15 @@ Based on HTTP, REST architecture, and RESTful web services, create opportunities
 *From Wikipedia:*
 > REST-compliant web services allow the requesting systems to access and manipulate textual representations of web resources by using a uniform and predefined set of stateless operations.
 
+**Note:** There is a REST route naming convention that should be adhered to. If I have a GET route:
+```js
+app.get("/campgrounds", (req, res) => {});
+```
+And I want to be able to add new campgrounds, I should have a complimenting POST route:
+```js
+app.post("/campgrounds", (req, res) => {});
+```
+
 ##### RESTful APIs
 
 RESTful APIs, the most common type of API, listens for state requests about a particular item or account, and returns that information for processing.
@@ -1120,6 +1129,10 @@ We use the request's query.search member to retrieve the user's search query. Th
 </ul>
 ```
 viewResults contains an object, Search, that contains all of our search data. For each movie in the search results, we print the title, year, and construct a poster.
+
+### Databases
+#### MongoDB
+
 
 #### Atom Back End Packages
  - express
