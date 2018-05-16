@@ -1,23 +1,14 @@
 <% include partials/header %>
 
 <div class="container">
-  <header>
-    <h1>YelpCamp</h1>
-    <h2>Home</h2>
-  </header>
-  <nav>
-    <h3>Navigation</h3>
-    <a href="/">Home</a>
-    <br>
-    <a href="/campgrounds">Campgrounds</a>
-    <br>
-    <a href="/campgrounds/new">Add Campground</a>
-  </nav>
-  <main>
-    Welcome to YelpCamp! Feel free to have a look around.
-  </main>
-  <aside>Aside</aside>
-  <footer>Footer</footer>
-</div>
+  <% include partials/navbar %>
 
-<% include partials/footer %>
+  <header class="jumbotron">
+    <h1>YelpCamp</h1>
+    <p>View our handpicked campgrounds from all over the world.</p>
+    <a href="/campgrounds">
+      <button type="button" class="btn btn-info">Check 'em out!</button>
+  </a>
+  </header>
+  <% include partials/footer %>
+</div>
