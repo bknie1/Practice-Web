@@ -981,14 +981,19 @@ Based on HTTP, REST architecture, and RESTful web services, create opportunities
 *From Wikipedia:*
 > REST-compliant web services allow the requesting systems to access and manipulate textual representations of web resources by using a uniform and predefined set of stateless operations.
 
-**Note:** There is a REST route naming convention that should be adhered to. If I have a GET route:
+**Note:** There is a REST route naming convention that should be adhered to. If I have a GET route that lists my campgrounds:
 ```js
 app.get("/campgrounds", (req, res) => {});
 ```
-And I want to be able to add new campgrounds, I should have a complimenting POST route:
+And I want to be able to add new campgrounds, I should have a complimenting GET route:
 ```js
-app.post("/campgrounds", (req, res) => {});
+app.get("/campgrounds/new", (req, res) => {});
 ```
+Where 'new' indicates we want to create a campground. This would direct users to a form compatible with our final, RESTful route:
+```js
+app.post('/campgrounds', (req, res) => {});
+```
+Where we get data from a user submitted form.
 
 ##### RESTful APIs
 
