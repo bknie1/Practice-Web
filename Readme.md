@@ -1037,6 +1037,8 @@ We print an error, if there was one, the status code of our request, and the raw
 Finally, we use JavaScript's built-in JSON.parse() method to translate the raw data into a usable JavaScript object.
 
 From there we can treat it like any other object!
+
+##### Simple API Request
 ```js
 // API DEMO
 // https://developer.yahoo.com/weather/
@@ -1050,6 +1052,74 @@ request('https://query.yahooapis.com/v1/public/yql?q=select%20astronomy.sunset%2
   console.log('Parsed body:\n', parsedBody);
 });
 ```
+##### API Search Request with Results View
+
+The user requests our root, search View.
+```js
+// '/' Root: Search for movies.
+app.get('/', (req, res) => {
+  console.log("Someone requested 'search (the root)'.");
+  res.render('search');
+});
+//-------------------------------------
+```
+We render a View that has an input form.
+```html
+<h1>oMDB API</h1>
+<h2>Movie Search</h2>
+<form action="/results" method="get">
+  <input type="text" name="search" placeholder="Title">
+  <button type="submit">Search</button>
+</form>
+```
+We save their input data in 'search'. We redirect the user to '/results' with this search data.
+```js
+// '/results'
+app.get('/results', (req, res) => {
+  //Get the search query from the root View.
+  var search = req.query.search;
+  if(search == 'undefined') search = '';
+  console.log("Someone requested '/results' and searched for " + search);
+  // Note: Use 'response', not 'res', or we accidentally overload.
+  request('http://www.omdbapi.com/?s=' + search + '&apikey=thewdb', function(error, response, body) {
+    if(!error && response.statusCode == 200) {
+      var parsedBody = JSON.parse(body);
+      // res.send(parsedBody); // Full JSON
+      // res.send(parsedBody.Search[0]); // First result only.
+      // res.send(parsedBody.Search[0].Title) // Title only.
+      res.render('results', {viewResults: parsedBody});
+    }
+    else {
+      console.log(error);
+    }
+  })
+});
+```
+We use the request's query.search member to retrieve the user's search query. Then, we build a URL API request string using this query. We make the request, parse the JSON, and pass the result data to our results View.
+```html
+<h1>Results</h1>
+<ul>
+  <% viewResults.Search.forEach(function(movie) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <img src="<%= movie.Poster %>"></a>
+            </th>
+            <th><%= movie.Title %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Year</td>
+            <td><%= movie.Year %></td>
+          </tr>
+        </tbody>
+      </table>
+  <% }); %>
+</ul>
+```
+viewResults contains an object, Search, that contains all of our search data. For each movie in the search results, we print the title, year, and construct a poster.
 
 #### Atom Back End Packages
  - express
