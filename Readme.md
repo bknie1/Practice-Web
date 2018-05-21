@@ -12,7 +12,7 @@ A space to take web development notes, post snippets, and link resources.
  8. [Express and EJS Templating](#express-and-ejs-templating)
  9. [Server Side Frameworks](#server-side-frameworks)
  10. [APIs and Packaging Data](#apis-and-packaging-data)
- 8. [Full Stack](#full-stack)
+ 11. [Full Stack](#full-stack)
 
 ## Front End
 
