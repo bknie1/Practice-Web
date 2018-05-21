@@ -12,7 +12,9 @@ A space to take web development notes, post snippets, and link resources.
  8. [Express and EJS Templating](#express-and-ejs-templating)
  9. [Server Side Frameworks](#server-side-frameworks)
  10. [APIs and Packaging Data](#apis-and-packaging-data)
- 11. [Full Stack](#full-stack)
+ 11. [Back End Atom Packages](#back-end-atom-packages)
+ 12. [Full Stack](#full-stack)
+ 13. [General Atom Packages](#general-atom-packages)
 
 ## Front End
 
@@ -436,8 +438,10 @@ jQuery has a ton of different effects. You can apply effects to selected element
  - Emmet
  - CSS Comb
   ternjs (Autocomplete)
- - jshint (Linter)
- - csshint (Linter)
+- Linters
+  - htmlhint
+   - jshint
+   - csshint
  - Color Picker
  - Pigments
  - Open In Browser
@@ -825,6 +829,10 @@ npm install -g <package name>
 - faker
   - Lower case 'f'.
   - Helps generate fake data to test your site with.
+-  express
+- bodyparser
+ - For GET requests from input forms.
+ - Turns req.body into a usable JavaScript object.
 
 ### Express and EJS Templating
 When we write Express, we don't write plain HTML files. Instead, we write embedded JavaScript files with a **template**.
@@ -1204,12 +1212,8 @@ viewResults contains an object, Search, that contains all of our search data. Fo
 ### Databases
 #### MongoDB
 
-
-#### Atom Back End Packages
- - express
- - bodyparser
-   - For GET requests.
-   - Turns req.body into a usable JavaScript object.
+#### Back End Atom Packages
+- Pretty JSON
 
 ## Full Stack
 #### Courses
@@ -1246,14 +1250,20 @@ var addAndMultTwo = compose(addTwo, multTwo);
 var endArray  = addAndMultTwo(array);
 ```
 
-#### Atom
-##### General Packages
+#### General Atom Packages
  - Beautify
  - File Icons
  - Highlight Selected
- - Linter and Snippets
+ - Various Linters and Snippets
+  - jshint
+  - csshint
+  - Kite (Python, others to come.)
+  - pylint
  - Teletype
  - Minimap
+ - Hey Pane
+ - Activate Power Mode
+  - Not serious. For fun.
 
 ##### Keybinds
   -Ctrl+D: Cursor to all by name.
