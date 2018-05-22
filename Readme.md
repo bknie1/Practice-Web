@@ -1362,6 +1362,8 @@ db.dogs.remove(
 Here we create a new 'dogs' database and insert a BSON dog object. We can use find() to show all objects in the dogs collection. We can use update() with a $set object to specify that we don't want to scrap the previous data, merely update the existing data.
 
 #### Mongoose.js
+Mongoose helps us interact with MongoDB. We can do it without Mongoose, but it's a little more verbose. We use Mongoose for the same reason we use jQuery to make it easier to interact with the DOM.
+
 Mongoose is an open document model package for Express that helps us work with MongoDB.
 
 ```js
