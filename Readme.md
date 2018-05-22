@@ -1242,6 +1242,220 @@ NoSQL databases are:
 NoSQL databases don't require clearly defined schema. They are much more flexible. We can add attributes without backtracking to add default values. However, we don't always need a flexible database.
 
 #### MongoDB
+MongoDB is a NoSQL database framework we can use in our back end. We want to make a separate database for every app we have.
+
+CRUD: Create, Read, Update, Delete. The common operations performed using a database.
+
+##### Common Commands
+```
+db.collection.<command>
+```
+db: Implicit handle to the used database.
+collection: Name of the used collection
+
+```
+use <database>
+```
+Switch to another database or create a new database using that name.
+```
+show collections
+```
+Lists the available collections. Collections are objects in the database.
+
+```
+show dbs
+```
+Shows database names.
+
+```
+db.database.insert(
+    {
+      fName: "John",
+      lName: "Smith"
+    }
+  )
+```
+Insert a BSON object into the database.
+
+```
+db.database.find()
+db.database.find(
+  {
+    name: "John"
+  }
+)
+```
+Left blank, lists all objects in the database. With key: value parameters, finds matching objects.
+
+```
+db.database.update(
+  {
+      name: "John"
+  },
+  {
+    name: "Jenna"
+  }
+)
+```
+Updates an entire entry, scrapping the old one and creating a new one with the arguments. This isn't usually ideal, so instead we pass another argument:
+```
+db.database.update(
+  {
+      name: "John"
+  },
+  {
+    $set:
+    {
+      name: "Jenna"
+      gender: "Female"
+    }
+  }
+)
+```
+Instead, we provide an object with **$set** to create another object with our updated name and a new attribute. This way, instead of overwriting the previous entry, John, we update it and set the appropriate values.
+
+##### Creating a Database and Collections
+```
+use dogs // Using the dog db.
+db.dogs.insert(
+  {
+    name: "Rusty",
+    breed: "Mutt"  
+  }
+) // Inserts a new dog.
+
+db.dogs.find() // Lists all objects in db.
+db.dogs.find(
+ {
+   name: "Rusty"
+ }
+) // Finds a specific object w/ name "Rusty".
+
+// Updates an existing entry.
+db.dogs.update(
+  {
+    name: "Rusty"
+  },
+  {
+    $set: {
+      breed: "Labradoodle"
+    }
+  }
+)
+
+db.dogs.remove(
+  {
+    breed: "Mutt"
+  }
+) // Removes all dogs WHERE breed == 'Mutt'
+
+db.dogs.remove(
+  {
+    breed: "Mutt"
+  },
+  {
+    justOne: true
+  }
+)
+// Removes all dogs WHERE breed == 'Poodle', but only removes one entry because of our {justOne}.
+```
+Here we create a new 'dogs' database and insert a BSON dog object. We can use find() to show all objects in the dogs collection. We can use update() with a $set object to specify that we don't want to scrap the previous data, merely update the existing data.
+
+#### Mongoose.js
+Mongoose is an open document model package for Express that helps us work with MongoDB.
+
+```js
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+
+const Cat = mongoose.model('Cat', { name: String });
+
+const kitty = new Cat({ name: 'Zildjian' });
+kitty.save().then(() => console.log('meow'));
+```
+From the site:
+> Mongoose provides a straight-forward, schema-based solution to model your application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box.
+
+[Getting Started with Mongoose](http://mongoosejs.com/docs/index.html)
+
+```js
+// getting-started.js
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+```
+
+> We have a pending connection to the test database running on localhost. We now need to get notified if we connect successfully or if a connection error occurs:
+
+```js
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+});
+```
+> Once our connection opens, our callback will be called. For brevity, let's assume that all following code is within this callback.
+
+> With Mongoose, everything is derived from a Schema. Let's get a reference to it and define our kittens.
+
+```js
+var kittySchema = mongoose.Schema({
+  name: String
+});
+```
+> So far so good. We've got a schema with one property, name, which will be a String. The next step is compiling our schema into a Model.
+
+```js
+var Kitten = mongoose.model('Kitten', kittySchema);
+```
+> A model is a class with which we construct documents. In this case, each document will be a kitten with properties and behaviors as declared in our schema. Let's create a kitten document representing the little guy we just met on the sidewalk outside:
+
+```js
+var silence = new Kitten({ name: 'Silence' });
+console.log(silence.name); // 'Silence'
+```
+> Kittens can meow, so let's take a look at how to add "speak" functionality to our documents:
+
+```js
+// NOTE: methods must be added to the schema before compiling it with mongoose.model()
+kittySchema.methods.speak = function () {
+  var greeting = this.name
+    ? "Meow name is " + this.name
+    : "I don't have a name";
+  console.log(greeting);
+}
+```
+
+```js
+var Kitten = mongoose.model('Kitten', kittySchema);
+```
+> Functions added to the methods property of a schema get compiled into the Model prototype and exposed on each document instance:
+
+```js
+var fluffy = new Kitten({ name: 'fluffy' });
+fluffy.speak(); // "Meow name is fluffy"
+```
+> We have talking kittens! But we still haven't saved anything to MongoDB. Each document can be saved to the database by calling its save method. The first argument to the callback will be an error if any occured.
+
+```js
+  fluffy.save(function (err, fluffy) {
+    if (err) return console.error(err);
+    fluffy.speak();
+  });
+```
+> Say time goes by and we want to display all the kittens we've seen. We can access all of the kitten documents through our Kitten model.
+
+```js
+Kitten.find(function (err, kittens) {
+  if (err) return console.error(err);
+  console.log(kittens);
+})
+```
+> We just logged all of the kittens in our db to the console. If we want to filter our kittens by name, Mongoose supports MongoDBs rich querying syntax.
+
+```js
+Kitten.find({ name: /^fluff/ }, callback);
+```
+> This performs a search for all documents with a name property that begins with "Fluff" and returns the result as an array of kittens to the callback.
 
 #### Back End Atom Packages
 - Pretty JSON
