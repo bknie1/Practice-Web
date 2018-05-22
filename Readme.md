@@ -1202,6 +1202,37 @@ We use the request's query.search member to retrieve the user's search query. Th
 viewResults contains an object, Search, that contains all of our search data. For each movie in the search results, we print the title, year, and construct a poster.
 
 ### Databases
+#### SQL vs. NoSQL
+##### SQL: Relational
+SQL databases are:
+  - Tabular
+  - Flat
+
+```
+FRIENDS
+name      city
+Phil      New Hartford
+Chrissy   'null'
+```
+
+SQL databases require clearly defined schema. If any data is missing, it needs to be replaced with default values. Also, those values associated with each attribute must be vetted; they have to match value type associated with that attribute.
+##### NoSQL: Non-Relational
+NoSQL databases are:
+  - Not Tabular
+  - Flexible BSON (Binary JavaScript Object Notation)
+
+```
+{
+  name:"Phil",
+  city: "New Hartford",
+  comments: [
+    {text: "Hey there."}
+  ]
+}
+```
+
+NoSQL databases don't require clearly defined schema. They are much more flexible. We can add attributes without backtracking to add default values. However, we don't always need a flexible database.
+
 #### MongoDB
 
 
