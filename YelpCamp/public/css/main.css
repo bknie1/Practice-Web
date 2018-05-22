@@ -129,14 +129,16 @@ textarea {
     opacity:1;
   }
 
+/* Add Form */
+.add-form {
+  margin: 3.5em auto;
+  width: 30%;
+}
+
 /* Everything else */
  .center-all {
    margin: auto;
    text-align: center;
- }
-
- .padding-1 {
-   padding: 1em;
  }
 
  .wrap-image {
