@@ -5,16 +5,17 @@ A space to take web development notes, post snippets, and link resources.
  2. [HTML](#html)
  3. [CSS](#css)
  4. [JavaScript](#javascript)
- 5. [jQuery](#jquery)
- 5. [Front End Atom Packages](#front-end-atom-packages)
- 6. [Back End](#back-end)
- 7. [Node.js](#node.js)
- 8. [Express and EJS Templating](#express-and-ejs-templating)
- 9. [Server Side Frameworks](#server-side-frameworks)
- 10. [APIs and Packaging Data](#apis-and-packaging-data)
- 11. [Back End Atom Packages](#back-end-atom-packages)
- 12. [Full Stack](#full-stack)
- 13. [General Atom Packages](#general-atom-packages)
+ 5. [ECMA] (#ecma)
+ 6. [jQuery](#jquery)
+ 7. [Front End Atom Packages](#front-end-atom-packages)
+ 8. [Back End](#back-end)
+ 9. [Node.js](#node.js)
+ 10. [Express and EJS Templating](#express-and-ejs-templating)
+ 11. [Server Side Frameworks](#server-side-frameworks)
+ 12. [APIs and Packaging Data](#apis-and-packaging-data)
+ 13. [Back End Atom Packages](#back-end-atom-packages)
+ 14. [Full Stack](#full-stack)
+ 15. [General Atom Packages](#general-atom-packages)
 
 ## Front End
 
@@ -211,6 +212,376 @@ There are two ways events propagate in our DOM. In **Bubbling**, the inner eleme
 - addEventListener(event, function, useCapture)
 
 useCapture is an optional boolean parameter and can be set to true. By default, our events bubble unless we specify otherwise.
+
+##### Hoisting
+In JavaScript, declared variables are hoisted to the top of their current scope. This means variables can be used before they have been declared. However, it is likely already habit to declare your variables at the top of your scope, so while this exists, most developers don't know about it because they declare at the top anyway.
+
+#### ECMA
+ES helped craft JavaScript standards so we don't struggle with cross browser compatability. Every year, new features are added that are likely incompatible with older stacks.
+
+##### ES 2015
+These additions were included in ES 2015.
+
+###### const
+Allows you to create constant variables. However, objects are not immutable; you can still modify arrays.
+
+###### let
+Allows you to declare variables in a specific scope. let thisData for each iteration inside a loop will be specific to that loop; thisData is inaccessible outside of that loop. This allows for some more direct control over where/when objects live or die. Let defined objects are technically hoisted, but JavaScript knows to disallow access to this information; the let variable is in a "temporal deadzone (TDZ)".
+
+You cannot redeclare the same variable using the let keyword multiple times.
+
+Use Case for let
+```
+for(var i = 0; i < 5; i++) {
+  setTimeout(function() {
+    console.log(i);
+  }, 1000)
+}
+
+// Prints 0 1 2 3 4 5 5 5 5 5. Why?
+```
+Our 5 is printed five times. This is because our loop has already finished and, because i was hoisted/incremented (nearly instantly) outside of setTimeout, by the time we get to setTimout's logic, i has already been incremented to 5!
+
+We used to solve this by doing:
+```
+for(var i = 0; i < 5; i++) {
+  function(j) {
+    setTimeout(function() {
+      console.log(i);
+    }, 1000)
+  }) (i)
+}
+// 0 1 2 3 4
+```
+This way, we force our loop to wait for each iteration of setTimeout to finish. But this is pretty ugly. Let will allow us to manipulate our scope:
+
+```
+for(let i = 0; i < 5; i++) {
+  setTimeout(function() {
+    console.log(i);
+  }, 1000)
+}
+```
+
+This works out of the box because we are only allowed to reference i within setTimeout. i is in a "temporal deadzone (TDZ)" and cannot be accessed until ready.
+
+###### Template Strings
+We can use a short hand version for string concatenation.
+
+```
+var firstName = "Joe";
+var lastName = "Bob";
+
+console.log("Hello " + firstName + " " + lastname + "!");
+
+// Or, with template strings:
+
+console.log('Hello $(firstName) $(lastName)'); // Better!
+```
+
+The back ticks allow us to spread this operation across multiple lines.
+
+###### Arrow Functions
+A more concise alternative to using the word function. There are some "gotchas". Arrow functions are different from regular functions; they don't get their own "this" keyword. Rather, the keyword "this" has its original meaning from the enclosing text.
+
+```
+// ES 2015
+var add = function(a, b) {
+  return a + b;
+}
+
+// ES5
+var add = (a, b) => {
+  return a + b;
+}
+
+// ES5 One Liner
+var add = (a, b) => a + b;
+
+// Use Case with ES5
+[1, 2, 3].map(function(value) {
+  return value * 2;
+} // [2, 4, 6]
+
+// Simplified with ES2015
+[1, 2, 3].map(value => value * 2;
+
+
+// Double and filter values that are divisible by 3.
+// Use Case with ES5
+function doubleAndFilter(arr) {
+  return arr.map(function(value) {
+    return value * 2;
+  }).filter(function(value) {
+    return value % 3 === 0;
+  })
+};
+
+doubleAndFilter([5, 10, 15, 20]); // [30]
+
+// Simplified with ES2015
+var doubleAndFilter = arr => arr.map(value => val * 2).filter(num => num % 3 === 0);
+
+doubleAndFilter([5, 10, 15, 20]); // [30]
+```
+
+There are some "gotchas" to consider.
+```
+var instructor = {
+  firstName: "Elie",
+  sayHi: function() {
+    setTimeout(function() {
+      console.log("Hello " + this.firstName);
+    }, 1000);
+  }
+} // Hello undefined! Why? Because "this" is working exclusively in the scope of the block.
+
+var instructor = {
+  firstName: "Elie",
+  sayHi: function() {
+    setTimeout(function() {
+      console.log("Hello " + this.firstName);
+    }.bind(this), 1000);
+  }
+} // Hello Elie! Because we bind "this" to the scope of setTimeout.
+
+// Why this? If we were to change the name of our instructor to something else, it will still work.
+```
+sayHi() won't work if you turn it into an arrow function because it does not get its own keyword argument. It can't actually access the keyword "arguments". However, it can access "arguments" if the arrow function is inside another standard function. JavaScript is weird.
+
+##### Default Parameters
+```
+function add(a = 0, b = 0) {
+  return a + b;
+}
+```
+If no argument given, we can use defaults.
+
+##### For ... Of Loop
+ES2015 gives us a new primitive data type called "symbol". It has an iterator that helps JavaScript iterate. It cannot be used for objects.
+
+```
+var arr = [1, 2, 3, 4, 5];
+
+for(let val of arr) {
+  console.log(val);
+}
+```
+
+##### Rest
+
+New operator in ES 2015. Collects the remaining arguments in a function and returns them in an array.
+
+```
+function printArgs(a, b, ... c) {
+  console.log(a);
+  console.log(b);
+  console.log(c);
+} // No ... here!
+
+printArgs(1, 2, 3, 4, 5); // 1, 2, (3) [3, 4, 5]
+
+// ES5
+function sumArgs() {
+  var total = 0;
+  for(var i = 0; i < arguments.length; i++) {
+    total += arguments[i];
+  }
+  return total;
+}
+
+// Fancy ES5
+function sumArgs() {
+  var argsArray = [].slice.call(arguments); // What we would like to slice with arguments.
+  return argsArray.reduce(function(accumulator, nextValue) { // Reduce to sum all values.
+    return accumulator + nextValue;
+  }
+}
+
+// With the Rest Operator: Get all args from arguments then add them up.
+var sumArgs = (...args) => args.reduce(acc, next) => acc + next);
+```
+
+##### Spread
+When "..." are used outside the parameters to a function, its a spread. It allows us to spread each value out (as a comma separated value). Useful when you have an array but what youa re working with expects comma separated values.
+
+```
+// ES5
+var arr1 = [1, 2, 3];
+var arr2 = [4, 5, 6];
+
+var combined = arr1.concat(arr2);
+
+// ES 2015
+var combined = [...arr1, ...arr2];
+
+// ES5 w/ Apply
+var arr = [3, 2, 4, 1, 5];
+Math.max(arr); // NaN
+Math.max.apply(this, arr); // 5
+
+// ES 2015: Spread out and find.
+Math.max(...arr); // 5
+
+function sumValues(a, b, c) {
+  return a + b + c;
+}
+
+var nums = [12, 15, 20];
+
+// ES5
+sumValues.apply(this, nums); // 47
+
+// ES2015: Spread and pass.
+sumValues(...nums); // 47
+```
+##### Objects
+Objects exist in ES5, but we can write them differently in ES2015.
+
+```
+// ES5
+var instructor = {
+  sayHello: function() {
+    return "Hello!";
+  }
+}
+
+// ES 2015
+var instructor = {
+  sayHello() {
+    return "Hello";
+  }
+}
+```
+
+##### Computed Property Names
+```
+// ES5
+var first = "Elie";
+var instructor = {};
+
+instructor[first] = "That's me!";
+
+instructor.Elie; // "That's me!"
+
+// ES2015
+var first = "Elie";
+var instructor = {
+  [firstName: "That's me!"
+}
+
+instructor.Elie; // "That's me!"
+```
+
+##### Object Destructuring
+Exacting values from data stored in objects and arrays. Destructuring allows us to unpack values into distinct variables.
+
+```
+
+var instructor = {
+  firstName: "Elie",
+  lastName: "Schoppik"
+}
+
+// ES5
+var firstName = instructor.firstName;
+var lastName = instructor.lastName;
+
+// ES2015
+var {firstName, lastName} = instructor;
+```
+
+The catch is that we have to name our variable names the same as they are in the object unless we specify.
+```
+// ES2015 with specific variable names.
+var {firstName: first, lastName: last} = instructor;
+first; // Elie
+last: // Schoppik
+```
+
+This is a very common tool used in React.
+
+```
+function displayInfo( {name, favColor } ) {
+  return [name, favColor];
+}
+
+var instructor = {
+  name: "Elie",
+  favColor: "Purple"
+};
+
+displayInfo(instructor); // ["Elie", "Purple"]
+```
+##### Array Destructuring
+We can use destructuring on arrays, too.
+
+```
+var arr = [1, 2, 3];
+
+var a = arr[0];
+var b = arr[1];
+var c = arr[2];
+
+// ES2015
+var [a, b, c] = arr;
+
+function returnNumbers(a, b) {
+  return [a, b];
+}
+
+var [first, second] = returnNumbers(5, 10);
+
+// Swapping values
+function swap(a, b) {
+  // a is temp stored, b assigned, a assigned to old b, return.
+}
+
+// ES2015
+function swap(a, b,) {
+  return [a, b] = [b, a]; // Similar to Python
+}
+
+swap(10, 5);
+```
+
+##### Instance Methods
+
+##### Class Methods
+
+##### Inheritence
+
+##### Super
+
+##### Maps
+
+##### Sets
+
+##### Promises
+A new constructor. A one time, guaranteed return of some future value. We don't know what the value of the async operation will be, or when it will finish executing, so we create a placeholder. When it is figured out it is fulfilled/resolved or rejected.
+
+A metaphor would be ordering food, being given a receipt, and waiting for the food. The receipt is the promise that you will receive your food. If you stand in the way, you are blocking/being syncronous. If you move out of the way and wait, you are being asynchronous!
+
+These are created using the "new" keyword.
+
+The returned value from a promise will always contain a .then and .catch method which are functions to be executed when the promise is resolved or rejected. Since each promise always returns something that has a .then, we call it thenable. We can chain promises together and return promises from one promise to another.
+
+```
+// Simple Example
+function displayAtRandomTime() {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      if(Math.random() > .5) {
+        resolve("Yes!");
+      } else {
+        reject("No!");
+      }
+    }
+  }
+}
+```
+
+##### Generators
 
 #### jQuery
 jQuery is similar to vanilla JavaScript, but its a library that allows us to do everything a little faster with less code. It is very selector heavy, but doesn't feature the component templates of newer libraries. Still, the selector syntax ($) is easy to pickup and makes some JavaScript commands less verbose.
