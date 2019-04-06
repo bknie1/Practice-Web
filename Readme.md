@@ -5,7 +5,7 @@ A space to take web development notes, post snippets, and link resources.
  2. [HTML](#html)
  3. [CSS](#css)
  4. [JavaScript](#javascript)
- 5. [ECMA] (#ecma)
+ 5. [ECMA](#ecma)
  6. [jQuery](#jquery)
  7. [Front End Atom Packages](#front-end-atom-packages)
  8. [Back End](#back-end)
