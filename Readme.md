@@ -35,10 +35,14 @@ HTML is the nouns of our page. It is our subject matter, but by itself, cannot a
 ### CSS
 CSS is the adjectives of our page. We can use CSS to describe our HTML and make things look cool.
 
-#### Frameworks and Tools
+#### CSS Frameworks and Tools
 [Bootstrap](https://getbootstrap.com/)
 
 [Bulma](https://bulma.io/)
+
+[Evergreen UI](https://evergreen.segment.com/)
+
+[Semantic UI](https://semantic-ui.com/)
 
 [Sass](https://sass-lang.com/)
 
@@ -805,6 +809,11 @@ jQuery has a ton of different effects. You can apply effects to selected element
 
 ### RESTful Routing
 
+REST: Respresentational State Transfer
+
+A mapping between HTTP routes and CRUD (Create, Read, Update, Destroy). Our routes are attached to HTTP methods. We can follow this route naming pattern in order to make our application clear, concise, and even discoverable.
+
+#### Cheat Sheet
 This is a quick cheat sheet for HTTP methods and RESTful routing. We follow these patterns and actions when we write routes.
 
 | **URL** | **HTTP Verb** |  **Action**|
