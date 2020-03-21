@@ -7,15 +7,13 @@ A space to take web development notes, post snippets, and link resources.
  4. [JavaScript](#javascript)
  5. [ECMA](#ecma)
  6. [jQuery](#jquery)
- 7. [Front End Atom Packages](#front-end-atom-packages)
+ 7. [RESTful Routing](#RESTful-routing)
  8. [Back End](#back-end)
  9. [Node.js](#node.js)
  10. [Express and EJS Templating](#express-and-ejs-templating)
  11. [Server Side Frameworks](#server-side-frameworks)
  12. [APIs and Packaging Data](#apis-and-packaging-data)
- 13. [Back End Atom Packages](#back-end-atom-packages)
- 14. [Full Stack](#full-stack)
- 15. [General Atom Packages](#general-atom-packages)
+ 13. [Full Stack](#full-stack)
 
 ## Front End
 
@@ -805,17 +803,19 @@ jQuery has a ton of different effects. You can apply effects to selected element
 
 [Vue.js](https://vuejs.org/)
 
-### Front End Atom Packages
- - Emmet
- - CSS Comb
-  ternjs (Autocomplete)
-- Linters
-  - htmlhint
-   - jshint
-   - csshint
- - Color Picker
- - Pigments
- - Open In Browser
+### RESTful Routing
+
+This is a quick cheat sheet for HTTP methods and RESTful routing. We follow these patterns and actions when we write routes.
+
+| **URL** | **HTTP Verb** |  **Action**|
+|------------|-------------|------------|
+| /cats/         | GET       | index  
+| /cats/new      | GET       | new   
+| /cats          | POST      | create   
+| /cats/:id      | GET       | show       
+| /cats/:id/edit | GET       | edit       
+| /cats/:id      | PATCH/PUT | update    
+| /cats/:id      | DELETE    | destroy  
 
 ## Back End
 ### Internet Basics
