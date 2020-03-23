@@ -1,19 +1,21 @@
 # Web Development Practice
 A space to take web development notes, post snippets, and link resources.
 
- 1. [Front End](#front-end)
+ 1. [Front End Basics](#front-end)
  2. [HTML](#html)
  3. [CSS](#css)
  4. [JavaScript](#javascript)
  5. [ECMA](#ecma)
  6. [jQuery](#jquery)
-  7. [Back End](#back-end)
+ 7. [Back End Basics](#back-end)
  8. [RESTful Routing](#RESTful-routing)
- 9. [Node.js](#node.js)
- 10. [Express and EJS Templating](#express-and-ejs-templating)
- 11. [Server Side Frameworks](#server-side-frameworks)
- 12. [APIs and Packaging Data](#apis-and-packaging-data)
- 13. [Full Stack](#full-stack)
+ 9. [Databases](#Databases)
+ 10. [Authentication](#Authentication)
+ 11. [Node.js](#node.js)
+ 12. [Express and EJS Templating](#express-and-ejs-templating)
+ 13. [Server Side Frameworks](#server-side-frameworks)
+ 14. [APIs and Packaging Data](#apis-and-packaging-data)
+ 15. [Full Stack](#full-stack)
 
 ## Front End
 
@@ -933,6 +935,30 @@ This is a quick cheat sheet for HTTP methods and RESTful routing. We follow thes
 | /cats/:id/edit | GET       | edit       
 | /cats/:id      | PATCH/PUT | update    
 | /cats/:id      | DELETE    | destroy  
+
+## Databases
+Both SQL and NoSQL database schemas usually lean on associations to relate some data to some other data.
+
+### SQL vs. NoSQL
+SQL requires that your tables be complete up front. If you try to add an attribute later, you will have to update all previous entities to that table; either by NULLing them, or adding some placeholder data.
+
+NoSQL does not require complete tables. However, you may query two entities, and find that one has more information than the other. NoSQL does not force you to refactor old entitities. Also, there is no strict consistency enforcement. NoSQL is more flexible, but may create more technical debt.
+
+### Associations
+
+#### SQL
+In SQL, we use JOIN tables to associate data e.g. User and Email tables would have a JOIN table where we associate some User's emails with that User.
+
+#### NoSQL
+In NoSQL, we can have embedded associations or object reference associations.
+- Embedded associations mean we write the entire object to some other object. For example, each User has an array of emails, and that array consists of complete email objects.
+- Object reference associations mean we have a User with an array of Email object references, rather than entire Emails. We simply point to where each email is located rather than having a complete copy.
+
+There is a use case for both. For example, if some data is unique to some user, we may not need to point to a reference that could be shared. However, if we are tagging Games with genre labels, multiple games may use the same tag, and so referencing shared tags may be more practical.
+
+Different use cases require different database and schema architecture.
+
+## Authentication
 
 ### Node.js
 Up until recently JavaScript was a browser only language. It's a way for us to write JavaScript on the server side.
