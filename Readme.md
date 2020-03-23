@@ -7,8 +7,8 @@ A space to take web development notes, post snippets, and link resources.
  4. [JavaScript](#javascript)
  5. [ECMA](#ecma)
  6. [jQuery](#jquery)
- 7. [RESTful Routing](#RESTful-routing)
- 8. [Back End](#back-end)
+  7. [Back End](#back-end)
+ 8. [RESTful Routing](#RESTful-routing)
  9. [Node.js](#node.js)
  10. [Express and EJS Templating](#express-and-ejs-templating)
  11. [Server Side Frameworks](#server-side-frameworks)
@@ -807,25 +807,6 @@ jQuery has a ton of different effects. You can apply effects to selected element
 
 [Vue.js](https://vuejs.org/)
 
-### RESTful Routing
-
-REST: Respresentational State Transfer
-
-A mapping between HTTP routes and CRUD (Create, Read, Update, Destroy). Our routes are attached to HTTP methods. We can follow this route naming pattern in order to make our application clear, concise, and even discoverable.
-
-#### Cheat Sheet
-This is a quick cheat sheet for HTTP methods and RESTful routing. We follow these patterns and actions when we write routes.
-
-| **URL** | **HTTP Verb** |  **Action**|
-|------------|-------------|------------|
-| /cats/         | GET       | index  
-| /cats/new      | GET       | new   
-| /cats          | POST      | create   
-| /cats/:id      | GET       | show       
-| /cats/:id/edit | GET       | edit       
-| /cats/:id      | PATCH/PUT | update    
-| /cats/:id      | DELETE    | destroy  
-
 ## Back End
 ### Internet Basics
 #### Steps
@@ -933,6 +914,25 @@ Headers are included with every request. Important ones include:
     - The status code.
       - e.g. 200, good request.
       - e.g. 404, not found.
+
+### RESTful Routing
+
+REST: Respresentational State Transfer
+
+A mapping between HTTP routes and CRUD (Create, Read, Update, Destroy). Our routes are attached to HTTP methods. We can follow this route naming pattern in order to make our application clear, concise, and even discoverable.
+
+#### Cheat Sheet
+This is a quick cheat sheet for HTTP methods and RESTful routing. We follow these patterns and actions when we write routes.
+
+| **URL** | **HTTP Verb** |  **Action**|
+|------------|-------------|------------|
+| /cats/         | GET       | index  
+| /cats/new      | GET       | new   
+| /cats          | POST      | create   
+| /cats/:id      | GET       | show       
+| /cats/:id/edit | GET       | edit       
+| /cats/:id      | PATCH/PUT | update    
+| /cats/:id      | DELETE    | destroy  
 
 ### Node.js
 Up until recently JavaScript was a browser only language. It's a way for us to write JavaScript on the server side.
