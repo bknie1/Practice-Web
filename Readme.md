@@ -960,11 +960,70 @@ Different use cases require different database and schema architecture.
 
 ## Authentication
 
+### Middleware
+Middleware are the actions that occur after an HTTP request is made, but before a route has completed. Authentication often lives in the middleware; we need to determine access before we grant it, or redirect in the absence of access.
+
+### Sessions
+HTTP is stateless; it makes one time requests. We can use Sessions to make HTTP stateful. There is some information saved in an encoded HTTP message that the server can recognize. The server can crack the code and determine if say, a user is signed in. Every time we make a request, we remind the server that some user is signed in, and to react accordingly.
+
+As soon as that user signs out, the information is removed from the session, and they may no longer have access to certain information.
+
+#### Passport
+Passport can be used to streamline authentication in Node.js apps. See below for a demo.
+
+```js
+const User = require("./models/user"); // Includes passportLocalMongoose Plugin e.g. userSchema.plugin(passportLocal)
+const passport = require("passport"); // Passport JS
+const localStrategy = require("passport-local"); // Passport Local: Username, Password
+const passportLocalMongoose = require("passport-local-mongoose"); // Catered to Mongoose
+
+app.use(require("express-session")({
+	secret: "YOURDECODINGKEYHERE",
+	resave: false,
+	saveUninitialized: false
+}));
+
+passport.use(new localStrategy(User.authenticate())); // Allows local authentication.
+app.use(passport.initialize()); // Required for passport use.
+app.use(passport.session()); // Required for session use.
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.post("/register", (req, res) => {
+	let username = req.body.usernameInput;
+	let password = req.body.passwordInput;
+	
+	// New user, not saved to the DB yet.
+	// Notice that we don't save the password to the User; this is unsafe.
+	// Instead, we hash and save it using our Passport-Local-Mongoose register() call.
+	
+	User.register(new User({username: username}), password, (err, user) => {
+		if(err) {
+			console.log(`Error: ${err}`);
+		}
+		
+		passport.authenticate("local")(req, res, () => {
+			res.redirect("/secret");
+		});
+	});
+});
+
+// Compares this Sign In information to what's in our DB.
+app.post("/signin", passport.authenticate("local"), {
+	successRedirect: "/secret",
+	failureRedirect: "/"
+}, (req, res) => {
+ // Handled by the middleware.
+});
+```
+
 ### Node.js
 Up until recently JavaScript was a browser only language. It's a way for us to write JavaScript on the server side.
 
 #### app.js
-app.js dictates our serving behavior. When we run app.js our server will start. The server will listen for incoming requests.
+Note: Not to be confused with app = express(). app.js is our starting file.
+
+'app' dictates our serving behavior. When we run app.js our server will start. The server will listen for incoming requests.
   - Setup
     - Sets up logging and parsing of data.
   - Database
